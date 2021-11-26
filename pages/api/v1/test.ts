@@ -7,9 +7,14 @@
  * Copyright: kolserdav, All rights reserved (c)
  * Create date: Sat Nov 27 2021 03:15:33 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
-/// <reference types="next" />
-/// <reference types="next/types/global" />
-/// <reference types="next/image-types/global" />
+import type { NextApiRequest, NextApiResponse } from 'next';
 
-// NOTE: This file should not be edited
-// see https://nextjs.org/docs/basic-features/typescript for more information.
+type Data = {
+  name: string;
+};
+
+export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
+  res
+    .status(200)
+    .json({ name: "Sergei Kol'miller", repository: 'https://github.com/kolserdav/portfolio' });
+};

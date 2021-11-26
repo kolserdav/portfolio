@@ -17,19 +17,29 @@
   "devDependencies": {
     "@types/node": "16.11.10",
     "@types/react": "17.0.37",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "airbnb": "^0.0.2",
     "eslint": "7.32.0",
+    "eslint-config-airbnb": "^19.0.1",
     "eslint-config-next": "12.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.0",
+    "sass": "^1.43.5",
     "typescript": "4.5.2"
   },
   "fhead": {
     "root": ".",
     "repository": "https://github.com/kolserdav/portfolio.git",
     "patterns": [
-      ".js",
       ".ts",
       ".tsx"
     ],
-    "exclude": [],
+    "exclude": [
+      "node_modules",
+      ".next"
+    ],
     "name": "Sergey Kolmiller",
     "email": "serega12101983@gmail.com",
     "license": "Специальная",
