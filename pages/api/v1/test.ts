@@ -9,12 +9,14 @@
  ******************************************************************************************/
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-type Data = {
+type Test = {
   name: string;
+  repository: string;
 };
 
-export default (req: NextApiRequest, res: NextApiResponse<Data>) => {
+const handler = (req: NextApiRequest, res: NextApiResponse<Test>) =>
   res
     .status(200)
-    .json({ name: "Sergei Kol'miller", repository: 'https://github.com/kolserdav/portfolio' });
-};
+    .json({ name: "Sergei Kol'miller", repository: 'https://github.com/kolserdav/portfolio.git' });
+
+export default handler;

@@ -7,11 +7,9 @@
  * Copyright: kolserdav, All rights reserved (c)
  * Create date: Sat Nov 27 2021 03:15:33 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import '../styles/globals.scss';
+import type { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
-
-export default MyApp
+export default ({ Component, pageProps }: AppProps) => {
+  return <Component {...pageProps} />;
+};
