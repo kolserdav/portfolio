@@ -4,6 +4,7 @@
     "es2021": true
   },
   "extends": [
+    "stylelint-config-sass-guidelines",
     "plugin:react/recommended",
     "airbnb",
     "eslint-config-prettier",
@@ -29,7 +30,7 @@
     "eslint-plugin-prettier"
   ],
   "rules": {
-    "at-rule-no-unknown": null,
+    "at-rule-no-unknown": 1,
     "scss/at-rule-no-unknown": true,
     "scss/dollar-variable-pattern": null,
     "selector-class-pattern": null,
