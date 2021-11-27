@@ -1,14 +1,31 @@
+$margin: 1px;
+
 .container {
+  position: relative;
   overflow: hidden;
   min-width: 320px;
+  width: calc(100% + $margin * 2);
+  height: calc(100% + $margin * 2);
   min-height: 80vh;
   max-width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .paper {
   background-color: white;
   border-radius: 1rem;
+}
+
+.card {
+  position: absolute;
+  border: $margin solid black;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: margin;
+}
+.prev {
+  left: calc(-100% - $margin);
+}
+.next {
+  left: 100%;
 }

@@ -43,13 +43,15 @@ const Home: NextPage = () => (
     </Head>
 
     <main className={styles.main}>
-      <Swiper
-        current={_getNext(1)}
-        previos={_getNext(0)}
-        next={_getNext(2)}
-        getNext={getNext}
-        getPrevios={getPrevios}
-      />
+      <div className={styles.swiper}>
+        <Swiper
+          current={_getNext(0)}
+          prev={_getNext(-1)}
+          next={_getNext(1)}
+          getNext={getNext}
+          getPrev={getPrevios}
+        />
+      </div>
     </main>
     <footer className={styles.footer}>
       <a
