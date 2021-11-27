@@ -1,5 +1,5 @@
 {
-  "eslint.validate": ["javascript"],
+  "eslint.validate": ["javascript", "javascriptreact", "html", "typescriptreact"],
   "eslint.options": { "configFile": ".eslintrc" },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
@@ -7,6 +7,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false
   },
   "files.associations": {

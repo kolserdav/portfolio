@@ -1,21 +1,14 @@
 .container {
   overflow: hidden;
   min-width: 320px;
-  max-width: 100rem;
-  background-image: linear-gradient(
-      45deg,
-      hsl(0, 24%, 96%) 25%,
-      transparent 25%,
-      transparent 75%,
-      hsl(0, 24%, 96%) 75%,
-      hsl(0, 24%, 96%)
-    ),
-    linear-gradient(
-      45deg,
-      hsl(0, 24%, 96%) 25%,
-      transparent 25%,
-      transparent 75%,
-      hsl(0, 24%, 96%) 75%,
-      hsl(0, 24%, 96%)
-    );
+  min-height: 80vh;
+  max-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paper {
+  background-color: white;
+  border-radius: 1rem;
 }

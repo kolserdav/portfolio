@@ -4,7 +4,6 @@
     "es2021": true
   },
   "extends": [
-    "stylelint-config-sass-guidelines",
     "plugin:react/recommended",
     "airbnb",
     "eslint-config-prettier",
@@ -22,20 +21,10 @@
     "sourceType": "module"
   },
   "ignorePatterns": "bin",
-  "plugins": [
-    "stylelint-scss",
-    "@typescript-eslint",
-    "react",
-    "prettier",
-    "eslint-plugin-prettier"
-  ],
+  "plugins": ["@typescript-eslint", "react", "prettier", "eslint-plugin-prettier"],
   "rules": {
-    "at-rule-no-unknown": 1,
-    "scss/at-rule-no-unknown": true,
-    "scss/dollar-variable-pattern": null,
-    "selector-class-pattern": null,
-    "scss/selector-no-redundant-nesting-selector": true,
     "react/function-component-definition": [
+      1,
       {
         "namedComponents": "arrow-function",
         "unnamedComponents": "arrow-function"
