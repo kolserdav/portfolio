@@ -7,6 +7,7 @@
  * Copyright: kolserdav, All rights reserved (c)
  * Create date: Sat Nov 27 2021 03:15:33 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
+// eslint-disable-next-line no-use-before-define
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -30,6 +31,7 @@ const getPrevios: GetSwipeHandler = (old: number) => {
 };
 
 const _getNext = (id: number): Awaited<ReturnType<GetSwipeHandler>> => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const res: any = getNext(id);
   return res;
 };
