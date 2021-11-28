@@ -4,13 +4,12 @@ import styles from '../../styles/ui/Swiper.module.scss';
 
 const ANIMATION_TIMEOUT = 400;
 
+/**
+ * One of swipe card
+ */
 export interface Swipe {
   id: number;
   children: ReactElement | ReactElement[];
-}
-
-interface SwipeFull extends Swipe {
-  type: 'next' | 'current' | 'prev';
 }
 
 /**
@@ -18,8 +17,21 @@ interface SwipeFull extends Swipe {
  */
 export type GetSwipeHandler = (oldId: number) => Swipe | Promise<Swipe>;
 
+/**
+ * One of swipe card internal
+ */
+interface SwipeFull extends Swipe {
+  type: 'next' | 'current' | 'prev';
+}
+
+/**
+ * Event touch name
+ */
 type TouchName = 'onTouchMove' | 'onTouchStart' | 'onTouchEnd';
 
+/**
+ * Props of Swiper component
+ */
 interface SwiperProps {
   /**
    * Current card content
@@ -100,6 +112,9 @@ const Swiper: Page<SwiperProps, SwiperProps> = (props) => {
 
   const containerRef = createRef<HTMLDivElement>();
 
+  /**
+   * Create memoized swipes
+   */
   const swipes = useMemo(
     () => getSwipes(_prev || prev, _current || current, _next || next),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,7 +122,7 @@ const Swiper: Page<SwiperProps, SwiperProps> = (props) => {
   );
 
   /**
-   *
+   * Get new or exists ref by id
    */
   const getRef = (id: number): typeof refs[0] => {
     refs[id] = refs[id] ? refs[id] : createRef<HTMLDivElement>();
@@ -266,10 +281,12 @@ const Swiper: Page<SwiperProps, SwiperProps> = (props) => {
       prevButton?.removeEventListener('click', clickPrevHandler);
       nextButton?.removeEventListener('click', clickNextHandler);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_next]);
 
   return (
     <div className={styles.container} ref={containerRef}>
+      {/** absolute position cards */}
       {swipes.map((item) => (
         <div
           onTouchMove={onTouchWrapper('onTouchMove')}
@@ -290,6 +307,7 @@ const Swiper: Page<SwiperProps, SwiperProps> = (props) => {
           )}
           ref={getRef(item.id)}
         >
+          {/** Block of content */}
           <div className={clsx(styles.content, className)}>{item.children}</div>
         </div>
       ))}
