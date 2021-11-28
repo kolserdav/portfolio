@@ -2,7 +2,16 @@
 
 .swiper {
   width: 30vw;
-  @media (max-width: 360px) {
-    width: 100%;
+  @media (max-width: 1024px) {
+    width: 70vw;
   }
+  @media (max-width: 720px) {
+    width: 100vw;
+  }
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
