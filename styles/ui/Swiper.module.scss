@@ -29,6 +29,9 @@ $margin: 1px;
 .next {
   left: 100%;
 }
+.back {
+  transition: left 0.4s ease-in-out 0s;
+}
 
 .content {
   position: relative;

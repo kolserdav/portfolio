@@ -15,7 +15,6 @@ interface SwipeFull extends Swipe {
 export type GetSwipeHandler = (oldNext: number) => Swipe | Promise<Swipe>;
 
 type TouchName = 'onTouchMove' | 'onTouchStart' | 'onTouchEnd' | 'onTouchCancel';
-type TouchHandler = (name: TouchName) => (event: TouchEvent<HTMLDivElement>) => void;
 
 interface SwiperProps {
   current: Swipe;
@@ -25,16 +24,14 @@ interface SwiperProps {
   getPrev: GetSwipeHandler;
 }
 
-const DEFAULT_SWIPE: Swipe = {
-  id: 0,
-  children: <h1>Test</h1>,
-};
-
-const getSwipes = (prev: Swipe, current: Swipe, next: Swipe): SwipeFull[] => {
+/**
+ * Create swipe list from values
+ */
+const getSwipes = (__prev: Swipe, __current: Swipe, __next: Swipe): SwipeFull[] => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const result: any[] = [1, 2, 3].map((id) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const item: any = id === 1 ? { ...prev } : id === 2 ? { ...current } : { ...next };
+    const item: any = id === 1 ? { ...__prev } : id === 2 ? { ...__current } : { ...__next };
     item.type = id === 1 ? 'prev' : id === 2 ? 'current' : 'next';
     return item;
   });
@@ -46,6 +43,7 @@ const refs: {
 } = {};
 
 let startTime: number;
+let startClientX: number;
 
 /**
  * Swiper component
@@ -53,14 +51,20 @@ let startTime: number;
 const Swiper: Page<SwiperProps, SwiperProps> = (props) => {
   const { current, next, prev, getNext, getPrev } = props;
 
-  const [_current, setCurrent] = useState<Swipe>(DEFAULT_SWIPE);
-  const [_prev, setPrev] = useState<Swipe>(DEFAULT_SWIPE);
-  const [_next, setNext] = useState<Swipe>(DEFAULT_SWIPE);
-  const [width, setWidth] = useState<number>();
+  const [_current, setCurrent] = useState<Swipe>();
+  const [_prev, setPrev] = useState<Swipe>();
+  const [_next, setNext] = useState<Swipe>();
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [width, setWidth] = useState<number>(0);
+  const [_left, _setLeft] = useState<number>(0);
+  const [left, setLeft] = useState<number>(0);
 
   const containerRef = createRef<HTMLDivElement>();
 
-  const swipes = useMemo(() => getSwipes(prev, current, next), [prev, current, next]);
+  const swipes = useMemo(
+    () => getSwipes(_prev || prev, _current || current, _next || next),
+    [_prev, _current, _next, current, next, prev]
+  );
 
   /**
    *
@@ -76,13 +80,29 @@ const Swiper: Page<SwiperProps, SwiperProps> = (props) => {
   const onTouchHandler = (name: TouchName, e: TouchEvent) => {
     const { touches } = e;
     const clientX = touches[0]?.clientX;
+    startClientX = startClientX || 0;
+    let __left;
     switch (name) {
       case 'onTouchStart':
         startTime = new Date().getTime();
+        startClientX = clientX;
         break;
       case 'onTouchMove':
+        __left = _left - (startClientX - clientX);
+        setLeft(__left);
         break;
       case 'onTouchEnd':
+        getRef(_next?.id || 0).current?.classList.add(styles.back);
+
+        getRef(_prev?.id || 0).current?.classList.add(styles.back);
+
+        getRef(_current?.id || 0).current?.classList.add(styles.back);
+        setLeft(0);
+        setTimeout(() => {
+          getRef(_next?.id || 0).current?.classList.remove(styles.back);
+          getRef(_prev?.id || 0).current?.classList.remove(styles.back);
+          getRef(_current?.id || 0).current?.classList.remove(styles.back);
+        }, 250);
         break;
       case 'onTouchCancel':
         break;
@@ -93,14 +113,32 @@ const Swiper: Page<SwiperProps, SwiperProps> = (props) => {
   /**
    * Touch event wrapper
    */
-  const onTouchWrapper: TouchHandler = (name) => (e) => {
-    onTouchHandler(name, e);
-  };
+  const onTouchWrapper =
+    (name: TouchName): ((event: TouchEvent<HTMLDivElement>) => void) =>
+    (e) => {
+      onTouchHandler(name, e);
+    };
 
   useEffect(() => {
     const _width = containerRef?.current?.parentElement?.getBoundingClientRect()?.width;
+    const __left = containerRef?.current?.parentElement?.getBoundingClientRect()?.left;
+    const _windowWidth = document.body.clientWidth;
     if (_width && !width) {
       setWidth(_width);
+    }
+    // save container left
+    if (__left && !left) {
+      _setLeft(__left);
+    }
+    // save window width
+    if (!windowWidth && _windowWidth) {
+      setWindowWidth(_windowWidth);
+    }
+    // set start cards
+    if (!_current || !_prev || !_next) {
+      setCurrent(current);
+      setNext(next);
+      setPrev(prev);
     }
   }, []);
 
@@ -113,7 +151,14 @@ const Swiper: Page<SwiperProps, SwiperProps> = (props) => {
           onTouchEnd={onTouchWrapper('onTouchEnd')}
           onTouchCancel={onTouchWrapper('onTouchCancel')}
           key={item.id}
-          style={{ width }}
+          id={item.id.toString()}
+          style={
+            item.type === 'current'
+              ? { width, left }
+              : item.type === 'prev'
+              ? { width, left: left - windowWidth }
+              : { width, left: left + windowWidth }
+          }
           className={clsx(
             styles.card,
             item.type === 'prev' ? styles.prev : item.type === 'next' ? styles.next : ''
