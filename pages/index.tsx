@@ -49,13 +49,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={clsx(styles.main, styles.row)}>
-        <button
-          ref={prevRef}
-          type="button"
-          onClick={() => {
-            console.log(1);
-          }}
-        >
+        <button ref={prevRef} type="button">
           prev
         </button>
         <div className={styles.swiper}>
@@ -70,13 +64,7 @@ const Home: NextPage = () => {
             nextButtonRef={nextRef}
           />
         </div>
-        <button
-          ref={nextRef}
-          type="button"
-          onClick={() => {
-            console.log(1);
-          }}
-        >
+        <button ref={nextRef} type="button">
           next
         </button>
       </main>

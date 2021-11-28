@@ -1,6 +1,8 @@
-import { useMemo, useState, createRef, RefObject, useEffect, TouchEvent, LegacyRef } from 'react';
+import { useMemo, useState, createRef, RefObject, useEffect, TouchEvent } from 'react';
 import clsx from 'clsx';
 import styles from '../../styles/ui/Swiper.module.scss';
+
+const ANIMATION_TIMEOUT = 400;
 
 export interface Swipe {
   id: number;
@@ -52,12 +54,12 @@ interface SwiperProps {
   /**
    * Button for swipe to next
    */
-  nextButtonRef?: LegacyRef<HTMLButtonElement | undefined>;
+  nextButtonRef?: RefObject<HTMLButtonElement | undefined>;
 
   /**
    * Button for swipe to previous
    */
-  prevButtonRef?: LegacyRef<HTMLButtonElement | undefined>;
+  prevButtonRef?: RefObject<HTMLButtonElement | undefined>;
 }
 
 /**
@@ -113,13 +115,62 @@ const Swiper: Page<SwiperProps, SwiperProps> = (props) => {
   };
 
   /**
+   * Set to cards classes for in animation
+   */
+  const setGoClass = () => {
+    getRef(_next?.id || 0).current?.classList.add(styles.go);
+    getRef(_prev?.id || 0).current?.classList.add(styles.go);
+    getRef(_current?.id || 0).current?.classList.add(styles.go);
+    setTimeout(() => {
+      getRef(_next?.id || 0).current?.classList.remove(styles.go);
+      getRef(_prev?.id || 0).current?.classList.remove(styles.go);
+      getRef(_current?.id || 0).current?.classList.remove(styles.go);
+    }, ANIMATION_TIMEOUT);
+  };
+
+  /**
+   * Set to cards classes for out animation
+   */
+  const setBackClass = () => {
+    getRef(_next?.id || 0).current?.classList.add(styles.back);
+    getRef(_prev?.id || 0).current?.classList.add(styles.back);
+    getRef(_current?.id || 0).current?.classList.add(styles.back);
+    setLeft(0);
+    setTimeout(() => {
+      getRef(_next?.id || 0).current?.classList.remove(styles.back);
+      getRef(_prev?.id || 0).current?.classList.remove(styles.back);
+      getRef(_current?.id || 0).current?.classList.remove(styles.back);
+    }, ANIMATION_TIMEOUT);
+  };
+
+  /**
+   * Run swipe animation
+   */
+  const swipe = async (_lastLeft: number) => {
+    if (Math.abs(_lastLeft) > width / 3) {
+      setLeft(0);
+      if (_lastLeft < 0) {
+        setPrev(_current);
+        setCurrent(_next);
+        setNext(await getNext(_next?.id || 0));
+      } else {
+        setPrev(await getPrev(_prev?.id || 0));
+        setCurrent(_prev);
+        setNext(_current);
+      }
+      setGoClass();
+    } else {
+      setBackClass();
+    }
+  };
+
+  /**
    * Touch event handler
    */
   const onTouchHandler = async (name: TouchName, e: TouchEvent) => {
     const { touches } = e;
     const clientX = touches[0]?.clientX;
     startClientX = startClientX || 0;
-    const touchLength = Math.abs(lastLeft);
     switch (name) {
       case 'onTouchStart':
         startClientX = clientX;
@@ -129,39 +180,21 @@ const Swiper: Page<SwiperProps, SwiperProps> = (props) => {
         setLeft(lastLeft);
         break;
       case 'onTouchEnd':
-        if (touchLength > width / 3) {
-          setLeft(0);
-          if (lastLeft < 0) {
-            setPrev(_current);
-            setCurrent(_next);
-            setNext(await getNext(_next?.id || 0));
-          } else {
-            setPrev(await getPrev(_prev?.id || 0));
-            setCurrent(_prev);
-            setNext(_current);
-          }
-          getRef(_next?.id || 0).current?.classList.add(styles.go);
-          getRef(_prev?.id || 0).current?.classList.add(styles.go);
-          getRef(_current?.id || 0).current?.classList.add(styles.go);
-          setTimeout(() => {
-            getRef(_next?.id || 0).current?.classList.remove(styles.go);
-            getRef(_prev?.id || 0).current?.classList.remove(styles.go);
-            getRef(_current?.id || 0).current?.classList.remove(styles.go);
-          }, 450);
-        } else {
-          getRef(_next?.id || 0).current?.classList.add(styles.back);
-          getRef(_prev?.id || 0).current?.classList.add(styles.back);
-          getRef(_current?.id || 0).current?.classList.add(styles.back);
-          setLeft(0);
-          setTimeout(() => {
-            getRef(_next?.id || 0).current?.classList.remove(styles.back);
-            getRef(_prev?.id || 0).current?.classList.remove(styles.back);
-            getRef(_current?.id || 0).current?.classList.remove(styles.back);
-          }, 450);
-        }
+        await swipe(lastLeft);
         break;
       default:
     }
+  };
+
+  /**
+   * Wait helper
+   */
+  const wait = async (miliseconds: number) => {
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(0);
+      }, miliseconds);
+    });
   };
 
   /**
@@ -173,10 +206,41 @@ const Swiper: Page<SwiperProps, SwiperProps> = (props) => {
       onTouchHandler(name, e);
     };
 
+  /**
+   * On next or previous button click handler
+   */
+  const clickHandler = (origin: 'next' | 'prev') => {
+    const isNext = origin === 'next';
+    return async () => {
+      const coeff = isNext ? -1 : 1;
+      const leftVal = width * coeff;
+      if (isNext) {
+        setGoClass();
+      } else {
+        setBackClass();
+      }
+      setLeft(leftVal);
+      await wait(ANIMATION_TIMEOUT / 2);
+      await swipe(leftVal);
+    };
+  };
+
+  /**
+   * Wrapper for next button click handler
+   */
+  const clickNextHandler = clickHandler('next');
+
+  /**
+   * Wrapper for previous button click handler
+   */
+  const clickPrevHandler = clickHandler('prev');
+
   useEffect(() => {
     const _width = containerRef?.current?.parentElement?.getBoundingClientRect()?.width;
     const _height = containerRef?.current?.parentElement?.getBoundingClientRect()?.height;
     const __left = containerRef?.current?.parentElement?.getBoundingClientRect()?.left;
+    const prevButton = prevButtonRef?.current;
+    const nextButton = nextButtonRef?.current;
     const _windowWidth = document.body.clientWidth;
     if (_width && !width && _height && !height) {
       setWidth(_width);
@@ -196,7 +260,13 @@ const Swiper: Page<SwiperProps, SwiperProps> = (props) => {
       setNext(next);
       setPrev(prev);
     }
-  }, []);
+    prevButton?.addEventListener('click', clickPrevHandler);
+    nextButton?.addEventListener('click', clickNextHandler);
+    return () => {
+      prevButton?.removeEventListener('click', clickPrevHandler);
+      nextButton?.removeEventListener('click', clickNextHandler);
+    };
+  }, [_next]);
 
   return (
     <div className={styles.container} ref={containerRef}>

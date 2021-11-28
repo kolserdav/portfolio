@@ -3,6 +3,7 @@ $card-shadow-shift: 5px;
 $card-shadow-stretch: 1px;
 $card-shadow-opacity: 0.05;
 $card-border-radius: 2px;
+$animation-timeout: 0.4s;
 
 .container {
   position: relative;
@@ -38,10 +39,10 @@ $card-border-radius: 2px;
   left: 100%;
 }
 .back {
-  transition: left 0.4s ease-in 0s;
+  transition: left $animation-timeout ease-in 0s;
 }
 .go {
-  transition: left 0.4s ease-out 0s;
+  transition: left $animation-timeout ease-out 0s;
 }
 
 .content {
