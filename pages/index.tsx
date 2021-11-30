@@ -7,39 +7,43 @@
  * Copyright: kolserdav, All rights reserved (c)
  * Create date: Sat Nov 27 2021 03:15:33 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import clsx from 'clsx';
 import Image from 'next/image';
+import { Swiper, GetSwipeHandler, Swipe } from '@kolserdav/swiper';
+import '@kolserdav/swiper/dist/index.css';
 import styles from '../styles/Index.module.scss';
-import Swiper, { GetSwipeHandler } from '../components/ui/Swiper';
 
-const getNext: GetSwipeHandler = (old: number) => {
+const getNext: GetSwipeHandler = async (old) => {
   const id = old + 1;
   return {
-    id,
-    children: <h1>Test {id}</h1>,
+    id: id < 7 ? id : null,
+    children: id < 7 ? <h1>Test {id}</h1> : <div />,
   };
 };
 
-const getPrevios: GetSwipeHandler = (old: number) => {
+const getPrevios: GetSwipeHandler = async (old) => {
   const id = old - 1;
   return {
-    id,
-    children: <h1>Test {id}</h1>,
+    id: id > 0 ? id : null,
+    children: id > 0 ? <h1>Test {id}</h1> : <div />,
   };
-};
-
-const _getNext = (id: number): Awaited<ReturnType<GetSwipeHandler>> => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const res: any = getNext(id);
-  return res;
 };
 
 const Home: NextPage = () => {
   const nextRef = useRef<HTMLButtonElement>(null);
   const prevRef = useRef<HTMLButtonElement>(null);
+  const [current, setCurrent] = useState<Swipe>();
+
+  useEffect(() => {
+    if (!current) {
+      (async () => {
+        setCurrent(await getNext(1));
+      })();
+    }
+  }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -49,24 +53,16 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={clsx(styles.main, styles.row)}>
-        <button ref={prevRef} type="button">
-          prev
-        </button>
         <div className={styles.swiper}>
-          <Swiper
-            className={styles.center}
-            current={_getNext(0)}
-            prev={_getNext(-1)}
-            next={_getNext(1)}
-            getNext={getNext}
-            getPrev={getPrevios}
-            prevButtonRef={prevRef}
-            nextButtonRef={nextRef}
-          />
+          {current && (
+            <Swiper
+              defaultCurrent={current}
+              getNext={getNext}
+              getPrev={getPrevios}
+              invitationAnimation={true}
+            />
+          )}
         </div>
-        <button ref={nextRef} type="button">
-          next
-        </button>
       </main>
       <footer className={styles.footer}>
         <a

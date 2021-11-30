@@ -1,13 +1,7 @@
 @import 'Global.module.scss';
 
 .swiper {
-  width: 30vw;
-  @media (max-width: 1024px) {
-    width: 70vw;
-  }
-  @media (max-width: 720px) {
-    width: 100vw;
-  }
+  width: 100%;
 }
 
 .center {
