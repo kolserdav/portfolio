@@ -7,7 +7,7 @@
  * Copyright: kolserdav, All rights reserved (c)
  * Create date: Sat Nov 27 2021 03:15:33 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import clsx from 'clsx';
@@ -33,14 +33,12 @@ const getPrevios: GetSwipeHandler = async (old) => {
 };
 
 const Home: NextPage = () => {
-  const nextRef = useRef<HTMLButtonElement>(null);
-  const prevRef = useRef<HTMLButtonElement>(null);
   const [current, setCurrent] = useState<Swipe>();
 
   useEffect(() => {
     if (!current) {
       (async () => {
-        setCurrent(await getNext(1));
+        setCurrent(await getNext(0));
       })();
     }
   }, []);
