@@ -23,6 +23,7 @@
   "ignorePatterns": "bin",
   "plugins": ["@typescript-eslint", "react", "prettier", "eslint-plugin-prettier"],
   "rules": {
+    "react/jsx-no-useless-fragment": 0,
     "react/function-component-definition": [
       1,
       {

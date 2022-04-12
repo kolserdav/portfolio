@@ -1,7 +1,13 @@
 @import 'Global.module.scss';
 
+.main {
+  position: relative;
+}
+
 .swiper {
+  position: relative;
   width: 100%;
+  height: 90vh;
 }
 
 .center {
