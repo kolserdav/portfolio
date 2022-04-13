@@ -35,11 +35,13 @@ const getPrevios: GetSwipeHandler = async (old) => {
 const Home: NextPage = () => {
   const [current, setCurrent] = useState<Swipe>();
 
+  const getCurrent = async () => {
+    setCurrent(await getNext(0));
+  };
+
   useEffect(() => {
     if (!current) {
-      (async () => {
-        setCurrent(await getNext(0));
-      })();
+      getCurrent();
     }
   }, []);
   return (

@@ -1,17 +1,10 @@
 {
   "eslint.validate": ["javascript", "javascriptreact", "html", "typescriptreact"],
-  "eslint.options": { "configFile": ".eslintrc" },
+  "eslint.options": { "overrideConfigFile": ".eslintrc" },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[javascript]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": false
-  },
+  "editor.formatOnSave": true,
   "files.associations": {
-    ".env.development": "ini",
+    ".env.development.local": "ini",
     ".env.production": "ini"
   }
 }

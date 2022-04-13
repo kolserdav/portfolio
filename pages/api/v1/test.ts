@@ -14,9 +14,11 @@ type Test = {
   repository: string;
 };
 
-const handler = (req: NextApiRequest, res: NextApiResponse<Test>) =>
-  res
+const handler = (req: NextApiRequest, res: NextApiResponse<Test>) => {
+  console.log(process.env.DATABASE_URL);
+  return res
     .status(200)
     .json({ name: "Sergei Kol'miller", repository: 'https://github.com/kolserdav/portfolio.git' });
+};
 
 export default handler;
