@@ -2,6 +2,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { NextPage } from 'next';
 import NextImage from 'next/image';
 import s from './PortfolioItem.module.scss';
+import { store } from '../../utils';
 
 interface PortfolioItemProps {
   data: FullJob;
@@ -17,6 +18,10 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
   const { name, description, link, Image } = data;
 
   const [fullOpen, setFullOpen] = useState<boolean>(false);
+  const [fullStart, setFullStart] = useState<{
+    width: number;
+    height: number;
+  } | null>(null);
   const [fullImage, setFullImage] = useState<{
     src: string;
     width: number;
@@ -32,34 +37,53 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
     const devWidth = getDeviceWidth();
     const width = devWidth - 20;
     const height = Math.ceil(width / Image.coeff);
+    setFullStart({
+      width,
+      height,
+    });
     setFullImage({
       width,
       height,
       src: Image.full,
     });
     document.body.classList.add('noscroll');
+    store.dispatch({ type: 'SWIPER_BLOCKED', value: true });
   };
 
   /**
-   * Close full image full
+   * Close full image
    */
   const closeFullImage = () => {
     setFullOpen(false);
     setFullImage(null);
     document.body.classList.remove('noscroll');
+    store.dispatch({ type: 'SWIPER_BLOCKED', value: false });
   };
 
+  /**
+   * Click zoom in handler
+   */
   const zoomIn = () => {
     setZoomMax(true);
+    const { width, coeff } = Image;
+    const height = Math.ceil(width / coeff);
     setFullImage({
-      width: 1920,
-      height: 1080,
+      width,
+      height,
       src: Image.full,
     });
   };
 
+  /**
+   * Click zoom out handler
+   */
   const zoomOut = () => {
     setZoomMax(false);
+    setFullImage({
+      width: fullStart?.width || 0,
+      height: fullStart?.height || 0,
+      src: Image.full,
+    });
   };
 
   return (

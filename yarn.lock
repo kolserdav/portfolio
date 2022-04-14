@@ -10,7 +10,7 @@
     core-js-pure "^3.20.2"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.2", "@babel/runtime@^7.16.3":
+"@babel/runtime@^7.10.2", "@babel/runtime@^7.16.3", "@babel/runtime@^7.9.2":
   version "7.17.9"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.17.9.tgz"
   integrity sha512-lSiBBvodq29uShpWGNbgFdKYNiFDo5/HIYsaCEY9ff4sb10x9jizo2+pRrSyF4jKZCXqgzuqBOQKbUm90gQwJg==
@@ -46,10 +46,10 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@kolserdav/swiper@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/@kolserdav/swiper/-/swiper-4.0.0.tgz"
-  integrity sha512-59wVldpLJpbQ62Hw0AC9ob2LBd79+fP0qT3/yu14PXxJT0J+lcFz3TOLzVqYB+1i25KZygjwafiJ+9vnJXOG8A==
+"@kolserdav/swiper@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@kolserdav/swiper/-/swiper-4.0.1.tgz#cbba2ad3aa45847975d0efb6fb008ed781f66c93"
+  integrity sha512-osTnJa5dtelqOsE6ZZqDzEVSyzBsz838PtUgSNeL+/rx/+SNjmMzw5irxFoP39iFtT+k5RxxGRoOm+LiqbsXGw==
   dependencies:
     clsx "^1.1.1"
     uuid "^8.3.2"
@@ -1958,6 +1958,13 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
+
+redux@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-4.1.2.tgz#140f35426d99bb4729af760afcf79eaaac407104"
+  integrity sha512-SH8PglcebESbd/shgf6mii6EIoRM0zrQyjcuQ+ojmfxjTtE0z9Y8pa62iA/OJ58qjP6j27uyW4kUF4jl/jd6sw==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
 
 regenerator-runtime@^0.13.4:
   version "0.13.9"
