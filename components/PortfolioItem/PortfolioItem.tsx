@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { NextPage } from 'next';
 import NextImage from 'next/image';
 import s from './PortfolioItem.module.scss';
@@ -21,18 +21,45 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
     src: string;
     width: number;
     height: number;
-  }>();
+  } | null>(null);
+  const [zoomMax, setZoomMax] = useState<boolean>(false);
 
   /**
    * Click image handler
    */
   const clickToImage = () => {
     setFullOpen(!fullOpen);
+    const devWidth = getDeviceWidth();
+    const width = devWidth - 20;
+    const height = Math.ceil(width / Image.coeff);
     setFullImage({
-      width: 800,
-      height: 480,
+      width,
+      height,
       src: Image.full,
     });
+    document.body.classList.add('noscroll');
+  };
+
+  /**
+   * Close full image full
+   */
+  const closeFullImage = () => {
+    setFullOpen(false);
+    setFullImage(null);
+    document.body.classList.remove('noscroll');
+  };
+
+  const zoomIn = () => {
+    setZoomMax(true);
+    setFullImage({
+      width: 1920,
+      height: 1080,
+      src: Image.full,
+    });
+  };
+
+  const zoomOut = () => {
+    setZoomMax(false);
   };
 
   return (
@@ -42,7 +69,7 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
           src={data.Image.mobile}
           width={500}
           height={Math.ceil(500 / data.Image.coeff)}
-          alt={`Image ${data.Image.id}`}
+          alt={`Job ${data.id}`}
         />
       </div>
       <div className={s.container}>
@@ -51,11 +78,39 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
         </a>
         <p className={s.desc}>{description}</p>
       </div>
-      <div className={s.full__image} style={!fullOpen ? { display: 'none' } : {}}>
-        <div className={s.close} />
-        <div className={s.full__image__container}>
+      <div className={s.full__image__container} style={!fullOpen ? { display: 'none' } : {}}>
+        <div className={s.full__image__actions}>
+          <div
+            role="button"
+            tabIndex={0}
+            title="Zoom out"
+            className={zoomMax ? s.zoomOut__white : s.zoomOut__black}
+            onClick={zoomOut}
+          />
+          <div
+            role="button"
+            tabIndex={0}
+            title="Zoom in"
+            className={zoomMax ? s.zoomIn__black : s.zoomIn__white}
+            onClick={zoomIn}
+          />
+          <div
+            role="button"
+            tabIndex={0}
+            title="Close"
+            className={s.close}
+            onClick={closeFullImage}
+          />
+        </div>
+        <div className={s.full__image}>
           {fullOpen && fullImage && (
-            <NextImage src={fullImage.src} width={fullImage.width} height={fullImage.height} />
+            <NextImage
+              objectFit="cover"
+              src={fullImage.src}
+              width={fullImage.width}
+              height={fullImage.height}
+              alt={`Full job ${data.id}`}
+            />
           )}
         </div>
       </div>
