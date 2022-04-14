@@ -7,43 +7,14 @@
  * Copyright: kolserdav, All rights reserved (c)
  * Create date: Sat Nov 27 2021 03:15:33 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
-import { useState, useEffect } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import clsx from 'clsx';
-import Image from 'next/image';
-import { Swiper, GetSwipeHandler, Swipe } from '@kolserdav/swiper';
 import '@kolserdav/swiper/dist/index.css';
 import styles from '../styles/Index.module.scss';
-
-const getNext: GetSwipeHandler = async (old) => {
-  const id = old + 1;
-  return {
-    id: id < 7 ? id : null,
-    children: id < 7 ? <h1>Test {id}</h1> : <div />,
-  };
-};
-
-const getPrevios: GetSwipeHandler = async (old) => {
-  const id = old - 1;
-  return {
-    id: id > 0 ? id : null,
-    children: id > 0 ? <h1>Test {id}</h1> : <div />,
-  };
-};
+import Slider from '../components/Slider/Slider';
 
 const Home: NextPage = () => {
-  const [current, setCurrent] = useState<Swipe>();
-
-  const getCurrent = async () => {
-    setCurrent(await getNext(0));
-  };
-
-  useEffect(() => {
-    if (!current) {
-      getCurrent();
-    }
-  }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -53,16 +24,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={clsx(styles.main, styles.row)}>
-        <div className={styles.swiper}>
-          {current && (
-            <Swiper
-              defaultCurrent={current}
-              getNext={getNext}
-              getPrev={getPrevios}
-              invitationAnimation={true}
-            />
-          )}
-        </div>
+        <Slider />
       </main>
     </div>
   );
