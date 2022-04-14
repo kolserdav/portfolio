@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3692",
     "lint": "next lint",
     "dev:migrate": "npm run format && npm run generate && prisma migrate dev --preview-feature",
     "migrate": "prisma migrate deploy --preview-feature && npm run generate",
@@ -17,7 +17,9 @@
     "migrate:status": "prisma migrate status --preview-feature",
     "studio": "prisma studio",
     "generate": "prisma generate",
-    "format": "prisma format"
+    "format": "prisma format",
+    "restart": "systemctl restart portfolio",
+    "logs": "journalctl -u portfolio -e"
   },
   "dependencies": {
     "@kolserdav/swiper": "^4.0.1",
