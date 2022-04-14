@@ -13,13 +13,18 @@ model Job {
   name        String
   link        String
   description String
-  images      String
+  imageId     Int
+  Image       Image    @relation(fields: [imageId], references: [id])
   created     DateTime @default(now())
 }
 
 // Images
 model Image {
   id      Int      @id @default(autoincrement())
-  src     String
+  full    String
+  desktop String
+  tablet  String
+  mobile  String
   created DateTime @default(now())
+  Job     Job[]
 }
