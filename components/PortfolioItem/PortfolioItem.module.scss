@@ -1,0 +1,52 @@
+@import '../../styles/Global.module.scss';
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}
+
+.image {
+  cursor: pointer;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.full__image {
+  position: fixed;
+  z-index: 12;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.full__image__container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: 4rem 2rem;
+}
+
+.link {
+  &:hover {
+    text-decoration: underline;
+  }
+}

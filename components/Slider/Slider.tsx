@@ -13,13 +13,16 @@ const getNext: GetSwipeHandler = async (old) => {
   const job = await r.jobFindFirst({
     where: {
       id: {
-        gte: id,
+        gt: id,
       },
+    },
+    include: {
+      Image: true,
     },
   });
   const { data } = job;
   return {
-    id: data ? id : null,
+    id: data ? data.id : null,
     children: data ? <PortfolioItem data={data} /> : <div />,
   };
 };
@@ -29,13 +32,16 @@ const getPrevios: GetSwipeHandler = async (old) => {
   const job = await r.jobFindFirst({
     where: {
       id: {
-        lte: id,
+        lt: id,
       },
+    },
+    include: {
+      Image: true,
     },
   });
   const { data } = job;
   return {
-    id: data ? id : null,
+    id: data ? data.id : null,
     children: data ? <PortfolioItem data={data} /> : <div />,
   };
 };

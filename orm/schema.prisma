@@ -25,6 +25,9 @@ model Image {
   desktop String
   tablet  String
   mobile  String
+  small   String
+  coeff   Float
+  width   Int
   created DateTime @default(now())
   Job     Job[]
 }

@@ -1,6 +1,6 @@
 import type { NextPage, NextPageContext } from 'next';
 import * as E from 'express';
-import { Prisma, Job as JobApi } from '@prisma/client';
+import { Prisma as P, Job, Image, PrismaPromise } from '@prisma/client';
 import type React from 'react';
 
 declare global {
@@ -12,7 +12,9 @@ declare global {
   type Component<T = any, IP = any> = NextPage<T, IP>;
   type ComponentContext = NextPageContext;
   type Awaited<T> = T extends PromiseLike<infer U> ? U : T;
-  type Job = JobApi;
+  type FullJob = Job & {
+    Image: Image;
+  };
 
   /**
    * Common types
@@ -43,7 +45,9 @@ declare global {
     /**
      * Get one job
      */
-    function jobFindFirst(args: Prisma.JobFindFirstArgs): Promise<Api.Result<Job | null>>;
+    function jobFindFirst<T extends P.JobFindFirstArgs>(
+      args: P.SelectSubset<T, P.JobFindFirstArgs>
+    ): Promise<P.CheckSelect<T, Api.Result<Job>, PrismaPromise<Api.Result<P.JobGetPayload<T>>>>>;
   }
 
   /**
