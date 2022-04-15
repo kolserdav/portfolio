@@ -21,8 +21,8 @@ $mobile-width: 760px;
   max-height: 100%;
   overflow: hidden;
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
@@ -109,6 +109,10 @@ $mobile-width: 760px;
   @media (max-width: $mobile-width) {
     font-size: 1.8rem;
   }
+}
+
+.desc {
+  text-align: center;
 }
 
 .full__image__actions {

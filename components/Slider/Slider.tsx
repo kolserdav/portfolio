@@ -33,6 +33,9 @@ const getPrevios: GetSwipeHandler = async (old) => {
         lte: id,
       },
     },
+    orderBy: {
+      id: 'desc',
+    },
     include: {
       Image: true,
     },
