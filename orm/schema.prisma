@@ -10,9 +10,9 @@ generator client {
 // Jobs
 model Job {
   id          Int      @id @default(autoincrement())
-  name        String
-  link        String
-  description String
+  name        String   @db.VarChar(50)
+  link        String   @db.VarChar(50)
+  description String   @db.VarChar(1000)
   imageId     Int
   Image       Image    @relation(fields: [imageId], references: [id])
   created     DateTime @default(now())
@@ -21,11 +21,11 @@ model Job {
 // Images
 model Image {
   id      Int      @id @default(autoincrement())
-  full    String
-  desktop String
-  tablet  String
-  mobile  String
-  small   String
+  full    String   @db.VarChar(50)
+  desktop String   @db.VarChar(50)
+  tablet  String   @db.VarChar(50)
+  mobile  String   @db.VarChar(50)
+  small   String   @db.VarChar(50)
   coeff   Float
   width   Int
   created DateTime @default(now())

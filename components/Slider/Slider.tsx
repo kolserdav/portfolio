@@ -11,7 +11,7 @@ const getNext: GetSwipeHandler = async (old) => {
   const job = await r.jobFindFirst({
     where: {
       id: {
-        gt: id,
+        gte: id,
       },
     },
     include: {

@@ -90,6 +90,9 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
     <div className={s.wrapper}>
       <div role="button" tabIndex={Image.id} className={s.image} onClick={clickToImage}>
         <NextImage
+          objectFit="cover"
+          placeholder="blur"
+          blurDataURL={Image.small}
           src={data.Image.mobile}
           width={500}
           height={Math.ceil(500 / data.Image.coeff)}
@@ -100,7 +103,7 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
         <a href={link} className={s.link}>
           <h1 className={s.title}>{name}</h1>
         </a>
-        <p className={s.desc}>{description}</p>
+        <p className={s.desc} dangerouslySetInnerHTML={{ __html: description }} />
       </div>
       <div className={s.full__image__container} style={!fullOpen ? { display: 'none' } : {}}>
         <div className={s.full__image__actions}>
@@ -129,6 +132,8 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
         <div className={s.full__image}>
           {fullOpen && fullImage && (
             <NextImage
+              placeholder="blur"
+              blurDataURL={Image.small}
               objectFit="cover"
               src={fullImage.src}
               width={fullImage.width}
