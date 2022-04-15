@@ -21,11 +21,11 @@ model Job {
 // Images
 model Image {
   id      Int      @id @default(autoincrement())
-  full    String   @db.VarChar(50)
-  desktop String   @db.VarChar(50)
-  tablet  String   @db.VarChar(50)
-  mobile  String   @db.VarChar(50)
-  small   String   @db.VarChar(50)
+  full    String   @db.VarChar(100)
+  desktop String   @db.VarChar(100)
+  tablet  String   @db.VarChar(100)
+  mobile  String   @db.VarChar(100)
+  small   String   @db.VarChar(100)
   coeff   Float
   width   Int
   created DateTime @default(now())
