@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run migrate && next build",
     "start": "next start -p 3692",
     "lint": "next lint",
     "dev:migrate": "npm run format && npm run generate && prisma migrate dev --preview-feature",
@@ -22,7 +22,7 @@
     "logs": "journalctl -u portfolio -e"
   },
   "dependencies": {
-    "@kolserdav/swiper": "^4.0.1",
+    "@kolserdav/swiper": "^4.0.2",
     "@prisma/client": "^3.12.0",
     "axios": "^0.26.1",
     "clsx": "^1.1.1",
