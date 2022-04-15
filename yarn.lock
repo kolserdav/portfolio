@@ -46,10 +46,10 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@kolserdav/swiper@^4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@kolserdav/swiper/-/swiper-4.0.2.tgz#7dbd03ecf77648556d63b155c82f9ae726dfe863"
-  integrity sha512-9qG6Rv7YMkgHDUO7It/ouWw2Sq8R7o18+sILUkoKQa57a8kdqI9m3YESIs8VezO+hYDqpAHPsvU4bDmk5sb1rg==
+"@kolserdav/swiper@^4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@kolserdav/swiper/-/swiper-4.0.3.tgz#8dfed96e1a88b86c1a2cf214280c602d44a5dcdc"
+  integrity sha512-7v0MnH+zN/0PQFp8g2SDJoFKY9jHmvtPVXQ5XtRfcVjf4G2kPXC4/M8WX2ny4HVipB/jjDZbH4aywJOCaUq2cQ==
   dependencies:
     clsx "^1.1.1"
     uuid "^8.3.2"
