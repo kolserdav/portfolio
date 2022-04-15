@@ -85,7 +85,6 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
       src: Image.full,
     });
   };
-
   return (
     <div className={s.wrapper}>
       <div role="button" tabIndex={Image.id} className={s.image} onClick={clickToImage}>
@@ -132,9 +131,10 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
         <div className={s.full__image}>
           {fullOpen && fullImage && (
             <NextImage
+              objectFit="cover"
+              objectPosition={0}
               placeholder="blur"
               blurDataURL={Image.small}
-              objectFit="cover"
               src={fullImage.src}
               width={fullImage.width}
               height={fullImage.height}

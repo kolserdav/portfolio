@@ -30,7 +30,7 @@ const getPrevios: GetSwipeHandler = async (old) => {
   const job = await r.jobFindFirst({
     where: {
       id: {
-        lt: id,
+        lte: id,
       },
     },
     include: {

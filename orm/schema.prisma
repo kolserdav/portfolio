@@ -12,7 +12,7 @@ model Job {
   id          Int      @id @default(autoincrement())
   name        String   @db.VarChar(50)
   link        String   @db.VarChar(50)
-  description String   @db.VarChar(1000)
+  description String   @db.VarChar(500)
   imageId     Int
   Image       Image    @relation(fields: [imageId], references: [id])
   created     DateTime @default(now())
