@@ -8,35 +8,67 @@
  * Copyright: kolserdav, All rights reserved (c)
  * Create Date: Sun Apr 17 2022 03:56:19 GMT+0700 (Красноярск, стандартное время)
  ******************************************************************************************/
-import { useMemo, useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NextPage } from 'next';
 import NextImage from 'next/image';
 import s from './PortfolioItem.module.scss';
-import { store } from '../../utils';
+import { store, IMG_SIZES } from '../../utils';
 
 interface PortfolioItemProps {
   data: FullJob;
 }
 
+interface FullImage {
+  src: string;
+  width: number;
+  height: number;
+}
+
+/**
+ * Get width of device
+ */
 const getDeviceWidth = (): number => {
   const { width } = document.body.getBoundingClientRect();
   return width;
 };
 
+/**
+ * Image loader by width
+ */
+const getActualImage = ({ Image, width }: { Image: FullJob['Image']; width: number }): string => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const imgKeys: any[] = Object.keys(IMG_SIZES);
+  const _imgKeys: (keyof typeof IMG_SIZES)[] = imgKeys;
+  let image = Image.full;
+  for (let i = 0; _imgKeys[i]; i++) {
+    const key = _imgKeys[i];
+    if (key === 'desktop') {
+      if (width >= IMG_SIZES[key]) {
+        image = Image.desktop;
+      }
+    } else if (key === 'small') {
+      if (width <= IMG_SIZES[key]) {
+        image = Image.small;
+      }
+    } else if (width >= IMG_SIZES[key] && width <= IMG_SIZES[_imgKeys[i - 1]]) {
+      image = Image[_imgKeys[i - 1]];
+    } else if (width <= IMG_SIZES[key] && width >= IMG_SIZES[_imgKeys[i + 1]]) {
+      image = Image[key];
+    }
+  }
+  return image;
+};
+
+/**
+ * Slider card component
+ */
 const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
   const { data } = props;
   const { name, description, link, Image } = data;
 
   const [fullOpen, setFullOpen] = useState<boolean>(false);
-  const [fullStart, setFullStart] = useState<{
-    width: number;
-    height: number;
-  } | null>(null);
-  const [fullImage, setFullImage] = useState<{
-    src: string;
-    width: number;
-    height: number;
-  } | null>(null);
+  const [fullStart, setFullStart] = useState<FullImage | null>(null);
+  const [fullImage, setFullImage] = useState<FullImage | null>(null);
   const [zoomMax, setZoomMax] = useState<boolean>(false);
 
   /**
@@ -47,14 +79,19 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
     const devWidth = getDeviceWidth();
     const width = devWidth - 20;
     const height = Math.ceil(width / Image.coeff);
+    const image = getActualImage({
+      Image,
+      width,
+    });
     setFullStart({
       width,
       height,
+      src: image,
     });
     setFullImage({
       width,
       height,
-      src: Image.full,
+      src: image,
     });
     document.body.classList.add('noscroll');
     store.dispatch({ type: 'SWIPER_BLOCKED', value: true });
@@ -92,9 +129,10 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
     setFullImage({
       width: fullStart?.width || 0,
       height: fullStart?.height || 0,
-      src: Image.full,
+      src: fullStart?.src || '',
     });
   };
+
   return (
     <div className={s.wrapper}>
       <div role="button" tabIndex={Image.id} className={s.image} onClick={clickToImage}>
