@@ -113,6 +113,7 @@ $mobile-width: 760px;
 
 .desc {
   text-align: center;
+  width: 100%;
 }
 
 .full__image__actions {
@@ -126,4 +127,12 @@ $mobile-width: 760px;
   &:hover {
     text-decoration: underline;
   }
+}
+
+.zoom__icon {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  background-image: url(../../images/icons/zoom_in_gray.svg);
+  background-repeat: no-repeat;
 }

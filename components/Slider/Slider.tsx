@@ -123,6 +123,7 @@ const Slider: NextPage = () => {
           getNext={getNext}
           getPrev={getPrevios}
           onSwipe={onSwipe}
+          className={s.card__content}
           dots={{
             list: dots,
             active,
