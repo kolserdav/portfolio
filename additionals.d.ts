@@ -48,6 +48,15 @@ declare global {
     function jobFindFirst<T extends P.JobFindFirstArgs>(
       args: P.SelectSubset<T, P.JobFindFirstArgs>
     ): Promise<P.CheckSelect<T, Api.Result<Job>, PrismaPromise<Api.Result<P.JobGetPayload<T>>>>>;
+
+    /**
+     * Get many jobs
+     */
+    function jobFindMany<T extends P.JobFindManyArgs>(
+      args: P.SelectSubset<T, P.JobFindManyArgs>
+    ): Promise<
+      P.CheckSelect<T, Api.Result<Array<Job>>, PrismaPromise<Api.Result<Array<P.JobGetPayload<T>>>>>
+    >;
   }
 
   /**

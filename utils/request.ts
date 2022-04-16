@@ -62,3 +62,13 @@ export const jobFindFirst: typeof Frontend.jobFindFirst = async (args) =>
     method: 'POST',
     body: args,
   });
+
+/**
+ * Get many jobs
+ */
+export const jobFindMany: typeof Frontend.jobFindMany = async (args) =>
+  send({
+    url: '/api/v1/job/findMany',
+    method: 'POST',
+    body: args,
+  });
