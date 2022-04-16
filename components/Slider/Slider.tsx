@@ -10,6 +10,8 @@
  ******************************************************************************************/
 import { useState, useEffect } from 'react';
 import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import queryString from 'query-string';
 import { Swiper, GetSwipeHandler, Swipe } from '@kolserdav/swiper';
 import '@kolserdav/swiper/dist/index.css';
 import s from './Slider.module.scss';
@@ -67,13 +69,15 @@ const getPrevios: GetSwipeHandler = async (old) => {
  * Slider component
  */
 const Slider: NextPage = () => {
+  const router = useRouter();
+
   const [current, setCurrent] = useState<Swipe>();
   const [active, setActive] = useState<number>(0);
   const [dots, setDots] = useState<number[]>([]);
   const [blocked, setBlocked] = useState<boolean>(false);
 
-  const getCurrent = async () => {
-    setCurrent(await getNext(0));
+  const getCurrent = async (id?: number) => {
+    setCurrent(await getNext(id || 0));
   };
 
   /**
@@ -89,8 +93,17 @@ const Slider: NextPage = () => {
     setDots(data.map((item) => item.id));
   };
 
+  /**
+   * Event onSwipe handler
+   */
   const onSwipe = (currId: any) => {
     setActive(currId);
+    const _router = {
+      query: {
+        j: currId,
+      },
+    };
+    router.push(_router, _router, { scroll: false });
   };
 
   /**
@@ -98,9 +111,16 @@ const Slider: NextPage = () => {
    */
   useEffect(() => {
     if (!current) {
-      getCurrent();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { j }: any = queryString.parse(router.asPath.replace(/^\/?\??/, ''));
+      const id = parseInt(j, 10);
+      if (!Number.isNaN(id)) {
+        getCurrent(id - 1);
+      } else {
+        getCurrent();
+      }
     }
-  }, [current]);
+  }, [current, router.asPath]);
 
   /**
    * Set blocked swipe when full image is open
