@@ -69,8 +69,8 @@
     ],
     "name": "Sergey Kolmiller",
     "email": "serega12101983@gmail.com",
-    "license": "Специальная",
-    "licenseText": "Права на копирование и распостранение данного файла или его частей имеет только владелец указанного репозитория",
+    "license": "Special",
+    "licenseText": "Only the owner of the specified repository has the right to copy and distribute this file or its parts",
     "copyright": "kolserdav, All rights reserved (c)",
     "renewAll": false
   }

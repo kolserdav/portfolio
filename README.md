@@ -4,6 +4,7 @@
 
 - [Demo](https://portfolio.uyem.ru)
 - [Next.js default README.md](./docs/DEFAULT.md)
+- [License](./LICENSE)
 
 ## Set up
 
