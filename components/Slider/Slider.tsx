@@ -110,6 +110,7 @@ const Slider: NextPage = () => {
    * Get current
    */
   useEffect(() => {
+    console.log(current);
     if (!current) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { j }: any = queryString.parse(router.asPath.replace(/^\/?\??/, ''));

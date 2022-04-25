@@ -15,7 +15,7 @@ type Test = {
   repository: string;
 };
 
-const handler = (req: NextApiRequest, res: NextApiResponse<Test>) => {
+const handler = (req: NextApiRequest, res: NextApiResponse<any>) => {
   return res
     .status(200)
     .json({ name: "Sergei Kol'miller", repository: 'https://github.com/kolserdav/portfolio.git' });
