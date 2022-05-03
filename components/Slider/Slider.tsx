@@ -110,16 +110,17 @@ const Slider: NextPage = () => {
    * Get current
    */
   useEffect(() => {
-    console.log(current);
     if (!current) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { j }: any = queryString.parse(router.asPath.replace(/^\/?\??/, ''));
-      const id = parseInt(j, 10);
-      if (!Number.isNaN(id)) {
-        getCurrent(id - 1);
-      } else {
-        getCurrent();
-      }
+      (async () => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const { j }: any = queryString.parse(router.asPath.replace(/^\/?\??/, ''));
+        const id = parseInt(j, 10);
+        if (!Number.isNaN(id)) {
+          getCurrent(id - 1);
+        } else {
+          getCurrent();
+        }
+      })();
     }
   }, [current, router.asPath]);
 
