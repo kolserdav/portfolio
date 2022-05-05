@@ -13,3 +13,17 @@ export const IMG_SIZES: Record<
   mobile: 760,
   small: 320,
 };
+
+/**
+ *  My contancts
+ */
+export const CONTACTS = {
+  email: 'uyem.ru@gmail.com',
+  telegram: 'kolserdav',
+  github: 'https://github.com/kolserdav',
+};
+
+/**
+ * My referal link of Hetzner
+ */
+export const HETZNER_REFERAL_LINK = 'https://hetzner.cloud/?ref=0Vh7MSaYpRFy';

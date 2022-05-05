@@ -1,0 +1,48 @@
+@import '../../styles/Global.module.scss';
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: $color-secondary-light;
+  padding: calc(#{$margin-big} / 2) 0;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  max-width: $container-max-width;
+  padding: 0 $container-padding;
+  @media (max-width: $mobile-width) {
+    flex-direction: column;
+  }
+}
+
+.title {
+  color: $color-black;
+}
+
+.content {
+  color: $color-primary;
+  span {
+    color: $color-secondary;
+  }
+}
+
+.image {
+  position: relative;
+  min-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2rem;
+  @media (max-width: $mobile-width) {
+    margin-left: 0;
+    margin-top: 2rem;
+  }
+}

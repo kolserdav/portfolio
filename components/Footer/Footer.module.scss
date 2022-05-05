@@ -1,0 +1,41 @@
+@import '../../styles/Global.module.scss';
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-color: $color-black;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: $color-white;
+  height: 100%;
+  width: 100%;
+  max-width: $container-max-width;
+  padding: $container-padding;
+}
+
+.copyright {
+  bottom: 0;
+  color: $color-primary;
+  text-align: center;
+}
+
+.links {
+  position: relative;
+  height: 100%;
+  color: $color-secondary;
+  line-height: 2;
+}
+
+.link {
+  a {
+    color: $color-secondary;
+  }
+}

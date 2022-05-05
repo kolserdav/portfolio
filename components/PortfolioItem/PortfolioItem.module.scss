@@ -106,14 +106,16 @@ $mobile-width: 760px;
 
 .title {
   text-align: center;
+  color: $color-primary;
   @media (max-width: $mobile-width) {
     font-size: 1.8rem;
   }
 }
 
 .desc {
-  text-align: center;
+  text-align: justify;
   width: 100%;
+  color: $color-secondary;
 }
 
 .full__image__actions {
@@ -126,6 +128,7 @@ $mobile-width: 760px;
   width: 100%;
   &:hover {
     text-decoration: underline;
+    text-decoration-color: $color-primary;
   }
 }
 

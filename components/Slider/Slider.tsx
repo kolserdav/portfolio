@@ -147,23 +147,26 @@ const Slider: NextPage = () => {
   }, []);
 
   return (
-    <div className={s.swiper}>
-      {current && (
-        <Swiper
-          blockSwipe={blocked}
-          defaultCurrent={current}
-          getNext={getNext}
-          getPrev={getPrevios}
-          onSwipe={onSwipe}
-          className={s.card__content}
-          dots={{
-            list: dots,
-            active,
-          }}
-          invitationAnimation={true}
-        />
-      )}
-    </div>
+    <section className={s.wrapper}>
+      <div className={s.container}>
+        <h2 className={s.title}>Работы</h2>
+        {current && (
+          <Swiper
+            blockSwipe={blocked}
+            defaultCurrent={current}
+            getNext={getNext}
+            getPrev={getPrevios}
+            onSwipe={onSwipe}
+            className={s.card__content}
+            dots={{
+              list: dots,
+              active,
+            }}
+            invitationAnimation={true}
+          />
+        )}
+      </div>
+    </section>
   );
 };
 

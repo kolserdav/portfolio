@@ -48,7 +48,7 @@
     "jsx-a11y/control-has-associated-label": 0,
     "react/jsx-boolean-value": 0,
     "no-underscore-dangle": 0,
-    "arrow-body-style": 1,
+    "arrow-body-style": 0,
     "no-nested-ternary": 0,
     "spaced-comment": 0,
     "@typescript-eslint/ban-ts-comment": 1,
