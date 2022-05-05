@@ -149,7 +149,13 @@ const Slider: NextPage = () => {
   return (
     <section className={s.wrapper}>
       <div className={s.container}>
-        <h2 className={s.title}>Работы</h2>
+        <div className={s.info}>
+          <h2 className={s.title}>Работы</h2>
+          <p className={s.desc}>
+            Ниже приведены работы в которых я принимал рашающее участие. Это далеко не полный
+            список, здесь приведены работы в рамках указанного выше списка технологий.
+          </p>
+        </div>
         {current && (
           <Swiper
             blockSwipe={blocked}

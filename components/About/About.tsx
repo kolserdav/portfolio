@@ -8,8 +8,7 @@ const About = () => {
       <div className={s.container}>
         <h2>Обо мне</h2>
         <p className={s.large}>
-          Перед тем как предложить мне работу пожалуйста ознакомьтесь с информацией о моем стеке
-          технологий
+          Перед тем как предложить мне работу пожалуйста ознакомьтесь с моим списком технологий
         </p>
         <div className={s.personal}>
           <div className={s.personal__info}>
@@ -36,8 +35,8 @@ const About = () => {
         <div className={s.tech}>
           <h3>Технологии</h3>
           <p>
-            Указанными технологиями список моих навыков не ограничен. Ниже перечислены только
-            основные:
+            Указанными технологиями список моих навыков в сфере разработки не ограничивается. Ниже
+            приведены только приоритетные:
           </p>
         </div>
         <div className={s.stack__container}>
@@ -50,7 +49,7 @@ const About = () => {
             <p>NodeJS, Express, PrismaJS (SqlLite, MySQL или Postgres)</p>
           </div>
           <div className={s.stack__item}>
-            <h4>Программирование клиентской части (Frontent)</h4>
+            <h4>Программирование клиентской части (Frontend)</h4>
             <p>ReactJS, Next.js</p>
           </div>
           <div className={s.stack__item}>

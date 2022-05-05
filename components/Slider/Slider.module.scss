@@ -11,7 +11,11 @@
   display: flex;
   justify-content: center;
   margin-bottom: $margin-big;
-  padding-top: $margin1;
+  @media (max-width: $mobile-width) {
+    margin-bottom: calc(#{$margin-big} + 2rem);
+  }
+  padding: $margin1 0;
+  z-index: 12;
 }
 
 .container {
@@ -26,7 +30,18 @@
   color: $color-black;
 }
 
+.info {
+  padding: 0 $container-padding;
+}
+
 .title {
   color: $color-black;
-  padding: 0 $container-padding;
+}
+
+.desc {
+  color: $color-primary;
+  width: 50%;
+  @media (max-width: $mobile-width) {
+    width: 100%;
+  }
 }
