@@ -1,3 +1,13 @@
+/******************************************************************************************
+ * Repository: https://github.com/kolserdav/portfolio.git
+ * File name: About.tsx
+ * Author: Sergey Kolmiller
+ * Email: <serega12101983@gmail.com>
+ * License: Special
+ * License text: Only the owner of the specified repository has the right to copy and distribute this file or its parts
+ * Copyright: kolserdav, All rights reserved (c)
+ * Create Date: Fri May 06 2022 04:42:18 GMT+0700 (Krasnoyarsk Standard Time)
+ ******************************************************************************************/
 import Image from 'next/image';
 import s from './About.module.scss';
 import KolserdavIcon from '../../images/kolserdav.png';
