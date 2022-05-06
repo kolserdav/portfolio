@@ -31,7 +31,9 @@ interface HomeProps {
 const Home: NextPage<HomeProps> = ({ page }: HomeProps) => {
   const { data } = page;
 
-  const _data = data || {};
+  const _data = data || {
+    Tech: [],
+  };
 
   return (
     <div className={s.wrapper__global}>

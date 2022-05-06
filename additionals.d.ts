@@ -65,7 +65,11 @@ declare global {
     function pageIndexFindFirst<T extends P.PageIndexFindFirstArgs>(
       args: P.SelectSubset<T, P.PageIndexFindFirstArgs>
     ): Promise<
-      P.CheckSelect<T, Api.Result<PageIndex>, PrismaPromise<Api.Result<P.PageIndexGetPayload<T>>>>
+      P.CheckSelect<
+        T,
+        Api.Result<PageIndex | null>,
+        PrismaPromise<Api.Result<P.PageIndexGetPayload<T>>>
+      >
     >;
 
     /**
