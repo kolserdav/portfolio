@@ -56,7 +56,7 @@ async function send(props: RequestParams): Promise<any> {
  */
 export const pageIndexFindFirst: typeof Frontend.pageIndexFindFirst = async (args) =>
   send({
-    url: `http://localhost:3000/api/v1/pageIndex/findFirst`,
+    url: `http://localhost:${process.env.PORT}/api/v1/pageIndex/findFirst`,
     method: 'POST',
     body: args,
   });
