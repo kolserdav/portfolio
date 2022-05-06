@@ -17,46 +17,64 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import Cloud from '../components/Cloud/Cloud';
 import About from '../components/About/About';
-import { HETZNER_REFERAL_LINK } from '../utils';
+import { HETZNER_REFERAL_LINK, r } from '../utils';
+import { request } from '../api/utils';
 
-const Home: NextPage = () => {
+interface HomeProps {
+  page: Api.Result<
+    Backend._PageIndex & {
+      Tech: Backend._Tech[];
+    }
+  >;
+}
+
+const Home: NextPage<HomeProps> = ({ page }: HomeProps) => {
+  const { data } = page;
+
+  const _data = data || {};
+
   return (
     <div className={s.wrapper__global}>
       <Head>
         <title>Портфолио фрилансера</title>
         <meta name="description" content="Работы по верстке и программированию Кольмиллер Сергея" />
+        <meta name="keywords" content="портфолио,сергей,кольмиллер" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header
-        title="Портфолио фрилансера"
-        subtitle="Разработка современных веб приложений"
-        description="Презентация моих работ в области веб разработки и другая информация"
+        headerTitle={_data.headerTitle}
+        headerSubtitle={_data.headerSubtitle}
+        headerDescription={_data.headerDescription}
       />
       <main className={clsx(s.main, s.row)}>
-        <About />
-        <Slider />
-        <Cloud
-          title="Облачные сервисы"
-          content={`В своей работе для развертывания приложений в сети я использовал разные облачные
-            сервисы. Но в последнее время постоянно пользуюсь только Hetzner. Причина в том, что
-            среди множества услуг веб сервисов для меня важны только две - это выделенные серверы и
-            управение DNS зоной хостинга. В Hetzner сервера работают очень качественно и это не
-            преувеличение, при том что их стоимость значительно ниже аналогов у конкурентов, то на
-            мой взгляд выбор очевиден. Для новых пользователей рекомендую регистрироваться по моей 
-            <a href="${HETZNER_REFERAL_LINK}">реферальной ссылке</a> при регистрации
-            после подтверждения документов вы получите 20 евро на депозит, которые можно потратить в
-            течении 12 месяцев на все услуги раздела <span>cloud</span>.
-            Этой суммы вполне хватит на несколько месяцев использования не самого слабого сервера. 
-            <span>
-              Перед подключением ознакомьтесь с 
-              <a href="https://console.hetzner.cloud/assets/legal/Referral-Programm_en.pdf">
-                Правилами реферальной программы Hetzner
-              </a>
-            </span>`}
+        <About
+          aboutTitle={_data.aboutTitle}
+          aboutSubtitle={_data.aboutSubtitle}
+          personalTitle={_data.personalTitle}
+          personalDescription={_data.personalDescription}
+          techTitle={_data.techTitle}
+          techDescription={_data.techDescription}
+          Tech={_data.Tech}
         />
+        <Slider sliderTitle={_data.sliderTitle} sliderDescription={_data.sliderDescription} />
+        <Cloud cloudTitle={_data.cloudTitle} cloudContent={_data.cloudContent} />
       </main>
       <Footer />
     </div>
   );
 };
+
+export async function getServerSideProps(): Promise<{ props: HomeProps }> {
+  const page = await request.pageIndexFindFirst({
+    include: {
+      Tech: true,
+    },
+  });
+  return {
+    props: {
+      page,
+    },
+  };
+}
+
 export default Home;

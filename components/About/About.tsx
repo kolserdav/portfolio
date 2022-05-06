@@ -12,23 +12,38 @@ import Image from 'next/image';
 import s from './About.module.scss';
 import KolserdavIcon from '../../images/kolserdav.png';
 
-const About = () => {
+interface AboutProps {
+  aboutTitle: string;
+  aboutSubtitle: string;
+  personalTitle: string;
+  personalDescription: string;
+  techTitle: string;
+  techDescription: string;
+  Tech: {
+    id: number;
+    title: string;
+    description: string;
+  }[];
+}
+
+const About = ({
+  aboutTitle,
+  aboutSubtitle,
+  personalDescription,
+  personalTitle,
+  techTitle,
+  techDescription,
+  Tech,
+}: AboutProps) => {
   return (
     <section className={s.wrapper}>
       <div className={s.container}>
-        <h2>Обо мне</h2>
-        <p className={s.large}>
-          Перед тем как предложить мне работу пожалуйста ознакомьтесь с моим списком технологий
-        </p>
+        <h2>{aboutTitle}</h2>
+        <p className={s.large}>{aboutSubtitle}</p>
         <div className={s.personal}>
           <div className={s.personal__info}>
-            <h3>Личная информация</h3>
-            <p>
-              Меня зовут Сергей Кольмиллер. Оказываю услуги веб программиста. С 2017 года
-              профессионально занимаюсь программированием. До этого примерно с 2010 года занимался
-              веб разработкой в качестве хобби и для дополнительного дохода, в то время для создания
-              сайтов использовал разные CMS.
-            </p>
+            <h3>{personalTitle}</h3>
+            <p>{personalDescription}</p>
           </div>
           <div className={s.image__container}>
             <Image
@@ -43,29 +58,16 @@ const About = () => {
           </div>
         </div>
         <div className={s.tech}>
-          <h3>Технологии</h3>
-          <p>
-            Указанными технологиями список моих навыков в сфере разработки не ограничивается. Ниже
-            приведены только приоритетные:
-          </p>
+          <h3>{techTitle}</h3>
+          <p>{techDescription}</p>
         </div>
         <div className={s.stack__container}>
-          <div className={s.stack__item}>
-            <h4>Языки программирования</h4>
-            <p>Javascript, Typescript</p>
-          </div>
-          <div className={s.stack__item}>
-            <h4>Программирование серверной части (Backend)</h4>
-            <p>NodeJS, Express, PrismaJS (SqlLite, MySQL или Postgres)</p>
-          </div>
-          <div className={s.stack__item}>
-            <h4>Программирование клиентской части (Frontend)</h4>
-            <p>ReactJS, Next.js</p>
-          </div>
-          <div className={s.stack__item}>
-            <h4>Операционные системы</h4>
-            <p>Linux</p>
-          </div>
+          {Tech.map((item) => (
+            <div key={item.id} className={s.stack__item}>
+              <h4>{item.title}</h4>
+              <p>{item.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

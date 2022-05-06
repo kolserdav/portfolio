@@ -31,3 +31,33 @@ model Image {
   created DateTime @default(now())
   Job     Job[]
 }
+
+// Index page
+model PageIndex {
+  id                  Int      @id @default(autoincrement())
+  headerTitle         String   @db.VarChar(100)
+  headerSubtitle      String   @db.VarChar(100)
+  headerDescription   String   @db.VarChar(500)
+  aboutTitle          String   @db.VarChar(100)
+  aboutSubtitle       String   @db.VarChar(500)
+  personalTitle       String   @db.VarChar(100)
+  personalDescription String   @db.VarChar(1000)
+  techTitle           String   @db.VarChar(100)
+  techDescription     String   @db.VarChar(500)
+  sliderTitle         String   @db.VarChar(100)
+  sliderDescription   String   @db.VarChar(500)
+  cloudTitle          String   @db.VarChar(100)
+  cloudContent        String   @db.VarChar(2000)
+  created             DateTime @default(now())
+  Tech                Tech[]
+}
+
+// Tech items
+model Tech {
+  id          Int       @id @default(autoincrement())
+  title       String    @db.VarChar(100)
+  description String    @db.VarChar(500)
+  pageId      Int
+  PageIndex   PageIndex @relation(fields: [pageId], references: [id])
+  created     DateTime  @default(now())
+}

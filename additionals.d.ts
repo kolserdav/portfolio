@@ -10,7 +10,7 @@
  ******************************************************************************************/
 import type { NextPage, NextPageContext } from 'next';
 import * as E from 'express';
-import { Prisma as P, Job, Image, PrismaPromise } from '@prisma/client';
+import { Prisma as P, Job, Image, PrismaPromise, PageIndex, Tech } from '@prisma/client';
 import type React from 'react';
 
 declare global {
@@ -60,6 +60,15 @@ declare global {
     ): Promise<P.CheckSelect<T, Api.Result<Job>, PrismaPromise<Api.Result<P.JobGetPayload<T>>>>>;
 
     /**
+     * Get one page index
+     */
+    function pageIndexFindFirst<T extends P.PageIndexFindFirstArgs>(
+      args: P.SelectSubset<T, P.PageIndexFindFirstArgs>
+    ): Promise<
+      P.CheckSelect<T, Api.Result<PageIndex>, PrismaPromise<Api.Result<P.PageIndexGetPayload<T>>>>
+    >;
+
+    /**
      * Get many jobs
      */
     function jobFindMany<T extends P.JobFindManyArgs>(
@@ -82,5 +91,8 @@ declare global {
         res: E.Response<Api.Result<Response>>
       ): Promise<E.Response<Api.Result<Response>, Record<string, Response>>>;
     }
+
+    type _PageIndex = PageIndex;
+    type _Tech = Tech;
   }
 }

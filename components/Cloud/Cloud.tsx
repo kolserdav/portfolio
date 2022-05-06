@@ -14,18 +14,18 @@ import { HETZNER_REFERAL_LINK } from '../../utils';
 import HetznerLogo from '../../images/hetzner-logo/small.png';
 
 interface CloudProps {
-  title: string;
-  content: string;
+  cloudTitle: string;
+  cloudContent: string;
 }
 
 const Cloud = (props: CloudProps) => {
-  const { title, content } = props;
+  const { cloudTitle, cloudContent } = props;
   return (
     <section className={s.wrapper}>
       <div className={s.container}>
         <div className={s.info}>
-          <h2 className={s.title}>{title}</h2>
-          <p className={s.content} dangerouslySetInnerHTML={{ __html: content }} />
+          <h2 className={s.title}>{cloudTitle}</h2>
+          <p className={s.content} dangerouslySetInnerHTML={{ __html: cloudContent }} />
         </div>
         <a className={s.image} href={HETZNER_REFERAL_LINK}>
           <Image

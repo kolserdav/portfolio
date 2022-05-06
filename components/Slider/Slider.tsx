@@ -9,7 +9,6 @@
  * Create Date: Sun Apr 17 2022 03:56:19 GMT+0700 (Красноярск, стандартное время)
  ******************************************************************************************/
 import { useState, useEffect } from 'react';
-import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import queryString from 'query-string';
 import { Swiper, GetSwipeHandler, Swipe } from '@kolserdav/swiper';
@@ -65,10 +64,15 @@ const getPrevios: GetSwipeHandler = async (old) => {
   };
 };
 
+interface SliderProps {
+  sliderTitle: string;
+  sliderDescription: string;
+}
+
 /**
  * Slider component
  */
-const Slider: NextPage = () => {
+const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
   const router = useRouter();
 
   const [current, setCurrent] = useState<Swipe>();
@@ -150,12 +154,8 @@ const Slider: NextPage = () => {
     <section className={s.wrapper}>
       <div className={s.container}>
         <div className={s.info}>
-          <h2 className={s.title}>Работы</h2>
-          <p className={s.desc}>
-            Ниже приведены работы в которых я принимал решающее участие. Из таких проектов это
-            далеко не полный список, здесь приведены только те работы которые можно открыть в
-            браузере.
-          </p>
+          <h2 className={s.title}>{sliderTitle}</h2>
+          <p className={s.desc}>{sliderDescription}</p>
         </div>
         {current && (
           <Swiper
