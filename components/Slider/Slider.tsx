@@ -10,7 +10,6 @@
  ******************************************************************************************/
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import queryString from 'query-string';
 import { Swiper, GetSwipeHandler, Swipe } from '@kolserdav/swiper';
 import '@kolserdav/swiper/dist/index.css';
 import s from './Slider.module.scss';
@@ -102,12 +101,6 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
    */
   const onSwipe = (currId: any) => {
     setActive(currId);
-    const _router = {
-      query: {
-        j: currId,
-      },
-    };
-    router.push(_router, _router, { scroll: false });
   };
 
   /**
@@ -116,14 +109,7 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
   useEffect(() => {
     if (!current) {
       (async () => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const { j }: any = queryString.parse(router.asPath.replace(/^\/?\??/, ''));
-        const id = parseInt(j, 10);
-        if (!Number.isNaN(id)) {
-          getCurrent(id - 1);
-        } else {
-          getCurrent();
-        }
+        getCurrent(-1);
       })();
     }
   }, [current, router.asPath]);

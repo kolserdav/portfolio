@@ -17,7 +17,6 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import Cloud from '../components/Cloud/Cloud';
 import About from '../components/About/About';
-import { HETZNER_REFERAL_LINK, r } from '../utils';
 import { request } from '../api/utils';
 
 interface HomeProps {
