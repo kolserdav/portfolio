@@ -23,9 +23,16 @@ const getNext: GetSwipeHandler = async (old) => {
   const id = old + 1;
   const job = await r.jobFindFirst({
     where: {
-      id: {
-        gte: id,
-      },
+      AND: [
+        {
+          id: {
+            gte: id,
+          },
+        },
+        {
+          archive: false,
+        },
+      ],
     },
     include: {
       Image: true,
@@ -45,9 +52,16 @@ const getPrevios: GetSwipeHandler = async (old) => {
   const id = old - 1;
   const job = await r.jobFindFirst({
     where: {
-      id: {
-        lte: id,
-      },
+      AND: [
+        {
+          id: {
+            lte: id,
+          },
+        },
+        {
+          archive: false,
+        },
+      ],
     },
     orderBy: {
       id: 'desc',
@@ -88,6 +102,9 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
    */
   const getDots = async () => {
     const jobs = await r.jobFindMany({
+      where: {
+        archive: false,
+      },
       select: {
         id: true,
       },

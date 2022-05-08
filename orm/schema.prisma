@@ -13,6 +13,7 @@ model Job {
   name        String   @db.VarChar(50)
   link        String   @db.VarChar(60)
   description String   @db.VarChar(500)
+  archive     Boolean  @default(false)
   imageId     Int
   Image       Image    @relation(fields: [imageId], references: [id])
   created     DateTime @default(now())
