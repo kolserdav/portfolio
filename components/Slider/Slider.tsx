@@ -139,12 +139,10 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
    * Get current
    */
   useEffect(() => {
-    if (!current) {
-      (async () => {
-        getCurrent(-1);
-      })();
-    }
-  }, [current, router.asPath]);
+    (async () => {
+      getCurrent(-1);
+    })();
+  }, [router.asPath, router.locale]);
 
   /**
    * Set blocked swipe when full image is open
@@ -166,7 +164,7 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
    */
   useEffect(() => {
     getDots();
-  }, []);
+  }, [router.locale, router.asPath]);
 
   return (
     <section className={s.wrapper}>
