@@ -106,29 +106,6 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
   };
 
   /**
-   * Get swipe dots
-   */
-  const getDots = async () => {
-    const jobs = await r.jobFindMany({
-      where: {
-        AND: [
-          {
-            archive: false,
-          },
-          {
-            lang,
-          },
-        ],
-      },
-      select: {
-        id: true,
-      },
-    });
-    const { data } = jobs;
-    setDots(data.map((item) => item.id));
-  };
-
-  /**
    * Event onSwipe handler
    */
   const onSwipe = (currId: any) => {
@@ -163,8 +140,30 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
    * Create dots
    */
   useEffect(() => {
+    /**
+     * Get swipe dots
+     */
+    const getDots = async () => {
+      const jobs = await r.jobFindMany({
+        where: {
+          AND: [
+            {
+              archive: false,
+            },
+            {
+              lang,
+            },
+          ],
+        },
+        select: {
+          id: true,
+        },
+      });
+      const { data } = jobs;
+      setDots(data.map((item) => item.id));
+    };
     getDots();
-  }, [router.locale, router.asPath]);
+  }, [router.locale, router.asPath, lang]);
 
   return (
     <section className={s.wrapper}>
