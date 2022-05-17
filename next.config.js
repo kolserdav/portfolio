@@ -5,5 +5,11 @@ module.exports = {
   reactStrictMode: true,
   images: {
     domains: [process.env.IMAGES_DOMAIN],
+    formats: ['image/webp'],
+  },
+  i18n: {
+    locales: ['en', 'ru'],
+    defaultLocale: 'ru',
+    localeDetection: false,
   },
 };

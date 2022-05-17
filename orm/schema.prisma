@@ -7,6 +7,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum Lang {
+  ru
+  en
+}
+
 // Jobs
 model Job {
   id          Int      @id @default(autoincrement())
@@ -15,6 +20,7 @@ model Job {
   description String   @db.VarChar(500)
   archive     Boolean  @default(false)
   imageId     Int
+  lang        Lang     @default(ru)
   Image       Image    @relation(fields: [imageId], references: [id])
   created     DateTime @default(now())
 }
@@ -36,6 +42,9 @@ model Image {
 // Index page
 model PageIndex {
   id                  Int      @id @default(autoincrement())
+  metaTitle           String   @default("Портфолио фрилансера") @db.VarChar(100)
+  metaDescription     String   @default("Работы по верстке и программированию Кольмиллер Сергея") @db.VarChar(500)
+  metaKeywords        String   @default("портфолио,сергей,кольмиллер") @db.VarChar(100)
   headerTitle         String   @db.VarChar(100)
   headerSubtitle      String   @db.VarChar(100)
   headerDescription   String   @db.VarChar(500)
@@ -49,6 +58,7 @@ model PageIndex {
   sliderDescription   String   @db.VarChar(500)
   cloudTitle          String   @db.VarChar(100)
   cloudContent        String   @db.VarChar(2000)
+  lang                Lang     @default(ru)
   created             DateTime @default(now())
   Tech                Tech[]
 }
@@ -60,5 +70,6 @@ model Tech {
   description String    @db.VarChar(500)
   pageId      Int
   PageIndex   PageIndex @relation(fields: [pageId], references: [id])
+  lang        Lang      @default(ru)
   created     DateTime  @default(now())
 }

@@ -7,7 +7,7 @@
  * Copyright: kolserdav, All rights reserved (c)
  * Create date: Sat Nov 27 2021 03:15:33 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
-import type { NextPage } from 'next';
+import type { NextPage, GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import clsx from 'clsx';
 import '@kolserdav/swiper/dist/index.css';
@@ -37,9 +37,9 @@ const Home: NextPage<HomeProps> = ({ page }: HomeProps) => {
   return (
     <div className={s.wrapper__global}>
       <Head>
-        <title>Портфолио фрилансера</title>
-        <meta name="description" content="Работы по верстке и программированию Кольмиллер Сергея" />
-        <meta name="keywords" content="портфолио,сергей,кольмиллер" />
+        <title>{_data.metaTitle}</title>
+        <meta name="description" content={_data.metaDescription} />
+        <meta name="keywords" content={_data.metaKeywords} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header
@@ -65,8 +65,14 @@ const Home: NextPage<HomeProps> = ({ page }: HomeProps) => {
   );
 };
 
-export async function getServerSideProps(): Promise<{ props: HomeProps }> {
+export async function getServerSideProps({
+  locale,
+}: GetServerSidePropsContext): Promise<{ props: HomeProps }> {
+  const lang: any = locale;
   const page = await request.pageIndexFindFirst({
+    where: {
+      lang,
+    },
     include: {
       Tech: true,
     },

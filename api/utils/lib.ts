@@ -23,6 +23,6 @@ export const saveLog = (props: {
   console.info(new Date(), message, err, {
     url: req?.url,
     headers: req?.headers,
-    data,
+    data: JSON.stringify(data),
   });
 };

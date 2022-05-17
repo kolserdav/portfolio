@@ -16,67 +16,6 @@ import s from './Slider.module.scss';
 import PortfolioItem from '../PortfolioItem/PortfolioItem';
 import { r, store } from '../../utils';
 
-/**
- * Get next slide card
- */
-const getNext: GetSwipeHandler = async (old) => {
-  const id = old + 1;
-  const job = await r.jobFindFirst({
-    where: {
-      AND: [
-        {
-          id: {
-            gte: id,
-          },
-        },
-        {
-          archive: false,
-        },
-      ],
-    },
-    include: {
-      Image: true,
-    },
-  });
-  const { data } = job;
-  return {
-    id: data ? data.id : null,
-    children: data ? <PortfolioItem data={data} /> : <div />,
-  };
-};
-
-/**
- * Get prev slide card
- */
-const getPrevios: GetSwipeHandler = async (old) => {
-  const id = old - 1;
-  const job = await r.jobFindFirst({
-    where: {
-      AND: [
-        {
-          id: {
-            lte: id,
-          },
-        },
-        {
-          archive: false,
-        },
-      ],
-    },
-    orderBy: {
-      id: 'desc',
-    },
-    include: {
-      Image: true,
-    },
-  });
-  const { data } = job;
-  return {
-    id: data ? data.id : null,
-    children: data ? <PortfolioItem data={data} /> : <div />,
-  };
-};
-
 interface SliderProps {
   sliderTitle: string;
   sliderDescription: string;
@@ -87,11 +26,80 @@ interface SliderProps {
  */
 const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
   const router = useRouter();
+  const { locale } = router;
+  const lang: any = locale;
 
   const [current, setCurrent] = useState<Swipe>();
   const [active, setActive] = useState<number>(0);
   const [dots, setDots] = useState<number[]>([]);
   const [blocked, setBlocked] = useState<boolean>(false);
+
+  /**
+   * Get next slide card
+   */
+  const getNext: GetSwipeHandler = async (old) => {
+    const id = old + 1;
+    const job = await r.jobFindFirst({
+      where: {
+        AND: [
+          {
+            id: {
+              gte: id,
+            },
+          },
+          {
+            archive: false,
+          },
+          {
+            lang,
+          },
+        ],
+      },
+      include: {
+        Image: true,
+      },
+    });
+    const { data } = job;
+    return {
+      id: data ? data.id : null,
+      children: data ? <PortfolioItem data={data} /> : <div />,
+    };
+  };
+
+  /**
+   * Get prev slide card
+   */
+  const getPrevios: GetSwipeHandler = async (old) => {
+    const id = old - 1;
+    const job = await r.jobFindFirst({
+      where: {
+        AND: [
+          {
+            id: {
+              lte: id,
+            },
+          },
+          {
+            archive: false,
+          },
+          {
+            lang,
+          },
+        ],
+      },
+      orderBy: {
+        id: 'desc',
+      },
+      include: {
+        Image: true,
+      },
+    });
+    const { data } = job;
+    return {
+      id: data ? data.id : null,
+      children: data ? <PortfolioItem data={data} /> : <div />,
+    };
+  };
 
   const getCurrent = async (id?: number) => {
     setCurrent(await getNext(id || 0));
@@ -103,7 +111,14 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
   const getDots = async () => {
     const jobs = await r.jobFindMany({
       where: {
-        archive: false,
+        AND: [
+          {
+            archive: false,
+          },
+          {
+            lang,
+          },
+        ],
       },
       select: {
         id: true,
