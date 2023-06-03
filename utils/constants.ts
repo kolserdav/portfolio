@@ -36,4 +36,4 @@ export const CONTACTS = {
 /**
  * My referal link of Hetzner
  */
-export const HETZNER_REFERAL_LINK = 'https://hetzner.cloud/?ref=0Vh7MSaYpRFy';
+export const HETZNER_REFERAL_LINK = 'https://my.adminvps.ru/aff.php?aff=27795';
