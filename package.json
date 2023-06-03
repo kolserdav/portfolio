@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "npm run migrate && next build",
-    "start": "next start",
+    "start": "next start -p ${PORT}",
     "lint": "next lint",
     "migrate:dev": "npm run format && npm run generate && prisma migrate dev --preview-feature",
     "migrate": "prisma migrate deploy --preview-feature && npm run generate",
