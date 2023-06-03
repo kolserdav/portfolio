@@ -28,14 +28,7 @@ const Cloud = (props: CloudProps) => {
           <p className={s.content} dangerouslySetInnerHTML={{ __html: cloudContent }} />
         </div>
         <a className={s.image} href={HETZNER_REFERAL_LINK}>
-          <Image
-            layout="fixed"
-            objectFit="cover"
-            src={HetznerLogo}
-            width={320}
-            height={151}
-            alt="hetzner"
-          />
+          <Image src={HetznerLogo} width={320} height={151} alt="hetzner" />
         </a>
       </div>
     </section>

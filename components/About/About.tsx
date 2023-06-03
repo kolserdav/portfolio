@@ -50,8 +50,6 @@ const About = ({
               className={s.personal__logo}
               width={225}
               height={225}
-              layout="fixed"
-              objectFit="cover"
               src={KolserdavIcon}
               alt="мое фото"
             />

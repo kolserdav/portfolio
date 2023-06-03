@@ -34,13 +34,11 @@ const Header = (props: HeaderProps) => {
           <p className={s.description}>{headerDescription}</p>
         </div>
         <div className={s.lang}>
-          <Link href={asPath} locale={isRu ? 'en' : 'ru'}>
+          <Link legacyBehavior href={asPath} locale={isRu ? 'en' : 'ru'}>
             <a href={asPath} className={s.button}>
               <Image
                 width={24}
                 height={24}
-                objectFit="cover"
-                layout="fixed"
                 src={isRu ? TranslateIcon : TranslateOffIcon}
                 alt={isRu ? 'перевод' : 'translate'}
               />
