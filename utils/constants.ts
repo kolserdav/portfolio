@@ -28,7 +28,7 @@ export const IMG_SIZES: Record<
  *  My contancts
  */
 export const CONTACTS = {
-  email: 'uyem.ru@gmail.com',
+  email: 'kolserdav@uyem.ru',
   telegram: 'kolserdav',
   github: 'https://github.com/kolserdav',
 };
