@@ -11,7 +11,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Swiper, GetSwipeHandler, Swipe } from '@kolserdav/swiper';
-import '@kolserdav/swiper/dist/index.css';
+import '@kolserdav/swiper/dist/styles.css';
 import s from './Slider.module.scss';
 import PortfolioItem from '../PortfolioItem/PortfolioItem';
 import { r, store } from '../../utils';

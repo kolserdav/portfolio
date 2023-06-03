@@ -46,10 +46,10 @@
   "resolved" "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   "version" "1.2.1"
 
-"@kolserdav/swiper@^4.1.5":
-  "integrity" "sha512-jI12Pf4wXxf5ADG3FGGrsvYzbT1mTGu7Qy1Z3OKONunG3J9KnlKovXX2TKQoVwahUKnOqxv0bPt/oGAmxJM2IQ=="
-  "resolved" "https://registry.npmjs.org/@kolserdav/swiper/-/swiper-4.1.5.tgz"
-  "version" "4.1.5"
+"@kolserdav/swiper@^4.2.1":
+  "integrity" "sha512-/nbdCa+TpXcLlY/wd+/0LvmJE+hLB8hofhz2B69j7RKp0JAL4PrgMMRx37S2H/qHhHa6Vhza0CralEH2he9Irg=="
+  "resolved" "https://registry.npmjs.org/@kolserdav/swiper/-/swiper-4.2.1.tgz"
+  "version" "4.2.1"
   dependencies:
     "clsx" "^1.1.1"
     "uuid" "^8.3.2"
@@ -2066,7 +2066,7 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   "version" "16.13.1"
 
-"react@^18.0.0", "react@^18.2.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@18.2.0":
+"react@^18.2.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@18.2.0":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"

@@ -10,7 +10,7 @@
 import type { NextPage, GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import clsx from 'clsx';
-import '@kolserdav/swiper/dist/index.css';
+import '@kolserdav/swiper/dist/styles.css';
 import s from '../styles/Page.module.scss';
 import Slider from '../components/Slider/Slider';
 import Header from '../components/Header/Header';
