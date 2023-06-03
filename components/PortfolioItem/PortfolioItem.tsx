@@ -147,9 +147,13 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
         <div className={s.zoom__icon} />
       </div>
       <div className={s.container}>
-        <a href={link} className={s.link}>
+        {link ? (
+          <a href={link} className={s.link}>
+            <h1 className={s.title}>{name}</h1>
+          </a>
+        ) : (
           <h1 className={s.title}>{name}</h1>
-        </a>
+        )}
         <p className={s.desc} dangerouslySetInnerHTML={{ __html: description }} />
       </div>
       <div className={s.full__image__container} style={!fullOpen ? { display: 'none' } : {}}>
