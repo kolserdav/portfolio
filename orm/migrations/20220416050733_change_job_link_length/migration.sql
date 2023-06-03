@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `Job` MODIFY `link` VARCHAR(60) NOT NULL;
