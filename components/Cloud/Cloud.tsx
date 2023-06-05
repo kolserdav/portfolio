@@ -11,7 +11,7 @@
 import Image from 'next/image';
 import s from './Cloud.module.scss';
 import { HETZNER_REFERAL_LINK } from '../../utils';
-import HetznerLogo from '../../images/hetzner-logo/small.png';
+import HetznerLogo from '../../images/adminvps-logo/small.gif';
 
 interface CloudProps {
   cloudTitle: string;
@@ -28,7 +28,7 @@ const Cloud = (props: CloudProps) => {
           <p className={s.content} dangerouslySetInnerHTML={{ __html: cloudContent }} />
         </div>
         <a className={s.image} href={HETZNER_REFERAL_LINK}>
-          <Image src={HetznerLogo} width={320} height={151} alt="hetzner" />
+          <Image src={HetznerLogo} width={320} alt="hetzner" />
         </a>
       </div>
     </section>
