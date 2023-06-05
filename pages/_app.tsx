@@ -1,11 +1,12 @@
 /******************************************************************************************
  * Repository: https://github.com/kolserdav/portfolio.git
+ * File name: _app.tsx
  * Author: Sergey Kolmiller
- * Email: <serega12101983@gmail.com>
- * License: Специальная
- * License Text: Права на копирование и распостранение данного файла или его частей имеет только владелец указанного репозитория
+ * Email: <kolserdav@uyem.ru>
+ * License: Special
+ * License text: Only the owner of the specified repository has the right to copy and distribute this file or its parts
  * Copyright: kolserdav, All rights reserved (c)
- * Create date: Sat Nov 27 2021 03:15:33 GMT+0700 (Krasnoyarsk Standard Time)
+ * Create Date: Mon Jun 05 2023 12:08:24 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
 import '../styles/globals.scss';
 import type { AppProps } from 'next/app';

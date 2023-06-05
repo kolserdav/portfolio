@@ -2,11 +2,11 @@
  * Repository: https://github.com/kolserdav/portfolio.git
  * File name: additionals.d.ts
  * Author: Sergey Kolmiller
- * Email: <serega12101983@gmail.com>
+ * Email: <kolserdav@uyem.ru>
  * License: Special
  * License text: Only the owner of the specified repository has the right to copy and distribute this file or its parts
  * Copyright: kolserdav, All rights reserved (c)
- * Create Date: Sun Apr 17 2022 03:56:18 GMT+0700 (Красноярск, стандартное время)
+ * Create Date: Mon Jun 05 2023 12:08:24 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
 import type { NextPage, NextPageContext } from 'next';
 import * as E from 'express';
