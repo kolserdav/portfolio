@@ -43,7 +43,7 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
       where: {
         AND: [
           {
-            id: {
+            priority: {
               gte: id,
             },
           },
@@ -61,7 +61,7 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
     });
     const { data } = job;
     return {
-      id: data ? data.id : null,
+      id: data ? data.priority : null,
       children: data ? <PortfolioItem data={data} /> : <div />,
     };
   };
@@ -75,7 +75,7 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
       where: {
         AND: [
           {
-            id: {
+            priority: {
               lte: id,
             },
           },
@@ -88,7 +88,7 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
         ],
       },
       orderBy: {
-        id: 'desc',
+        priority: 'desc',
       },
       include: {
         Image: true,
@@ -96,7 +96,7 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
     });
     const { data } = job;
     return {
-      id: data ? data.id : null,
+      id: data ? data.priority : null,
       children: data ? <PortfolioItem data={data} /> : <div />,
     };
   };
@@ -156,11 +156,11 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
           ],
         },
         select: {
-          id: true,
+          priority: true,
         },
       });
       const { data } = jobs;
-      setDots(data.map((item) => item.id));
+      setDots(data.map((item) => item.priority));
     };
     getDots();
   }, [router.locale, router.asPath, lang]);

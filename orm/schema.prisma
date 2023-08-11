@@ -14,7 +14,8 @@ enum Lang {
 
 // Jobs
 model Job {
-  id          Int      @id @default(autoincrement())
+  id          String   @id @default(uuid())
+  priority    Int      @default(autoincrement())
   name        String   @db.VarChar(50)
   link        String?  @db.VarChar(60)
   description String   @db.VarChar(500)
