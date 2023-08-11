@@ -55,6 +55,9 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
           },
         ],
       },
+      orderBy: {
+        priority: 'asc',
+      },
       include: {
         Image: true,
       },
@@ -157,6 +160,9 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
         },
         select: {
           priority: true,
+        },
+        orderBy: {
+          priority: 'asc',
         },
       });
       const { data } = jobs;
