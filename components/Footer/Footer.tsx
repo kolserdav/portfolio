@@ -33,6 +33,12 @@ const Footer = () => {
           <div className={s.link}>
             Github: <a href={github}>{github}</a>
           </div>
+          <div className={s.link}>
+            Resume:{' '}
+            <a target="_blank" href="/resume">
+              here
+            </a>
+          </div>
         </div>
         <div className={s.copyright}>
           © All rights reserved 2022{currentYear !== 0 && ` - ${currentYear}`}

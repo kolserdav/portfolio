@@ -1,0 +1,13 @@
+.wrapper {
+  position: relative;
+
+  .link__container {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    .link {
+      display: inline-block;
+      margin: 1rem;
+    }
+  }
+}

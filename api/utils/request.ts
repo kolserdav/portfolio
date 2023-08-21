@@ -9,6 +9,7 @@
  * Create Date: Mon Jun 05 2023 12:08:24 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
 import axios from 'axios';
+import { API_VERSION, PORT } from './constants';
 
 interface RequestParams {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -36,7 +37,7 @@ async function send(props: RequestParams): Promise<any> {
     axios
       .request({
         method: method || 'POST',
-        url,
+        url: `http://127.0.0.1:${PORT}${API_VERSION}${url}`,
         data: body,
         params,
         headers: _headers,
@@ -61,12 +62,16 @@ async function send(props: RequestParams): Promise<any> {
   });
 }
 
-/**
- * Get one job
- */
 export const pageIndexFindFirst: typeof Frontend.pageIndexFindFirst = async (args) =>
   send({
-    url: `http://127.0.0.1:${process.env.PORT}/api/v1/pageIndex/findFirst`,
+    url: '/pageIndex/findFirst',
+    method: 'POST',
+    body: args,
+  });
+
+export const pageResumeFindFirst: typeof Frontend.pageResumeFindFirst = async (args) =>
+  send({
+    url: '/pageResume/findFirst',
     method: 'POST',
     body: args,
   });

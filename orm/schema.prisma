@@ -64,6 +64,15 @@ model PageIndex {
   Tech                Tech[]
 }
 
+model PageResume {
+  id              Int    @id @default(autoincrement())
+  metaTitle       String @default("Веб разработчик") @db.VarChar(100)
+  metaDescription String @default("Резюме Сергей Кольмиллер") @db.VarChar(500)
+  metaKeywords    String @default("сергей,кольмиллер") @db.VarChar(100)
+  printVersion    String @default("Версия для печати") @db.VarChar(100)
+  lang            Lang   @default(ru)
+}
+
 // Tech items
 model Tech {
   id          Int       @id @default(autoincrement())

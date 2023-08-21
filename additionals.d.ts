@@ -10,7 +10,15 @@
  ******************************************************************************************/
 import type { NextPage, NextPageContext } from 'next';
 import * as E from 'express';
-import { Prisma as P, Job, Image, PrismaPromise, PageIndex, Tech } from '@prisma/client';
+import {
+  Prisma as P,
+  Job,
+  Image,
+  PrismaPromise,
+  PageIndex,
+  Tech,
+  PageResume,
+} from '@prisma/client';
 import type React from 'react';
 
 declare global {
@@ -59,17 +67,16 @@ declare global {
       args: P.SelectSubset<T, P.JobFindFirstArgs>
     ): Promise<P.CheckSelect<T, Api.Result<Job>, PrismaPromise<Api.Result<P.JobGetPayload<T>>>>>;
 
-    /**
-     * Get one page index
-     */
     function pageIndexFindFirst<T extends P.PageIndexFindFirstArgs>(
       args: P.SelectSubset<T, P.PageIndexFindFirstArgs>
     ): Promise<
-      P.CheckSelect<
-        T,
-        Api.Result<PageIndex | null>,
-        PrismaPromise<Api.Result<P.PageIndexGetPayload<T>>>
-      >
+      P.CheckSelect<T, Api.Result<PageIndex>, PrismaPromise<Api.Result<P.PageIndexGetPayload<T>>>>
+    >;
+
+    function pageResumeFindFirst<T extends P.PageResumeFindFirstArgs>(
+      args: P.SelectSubset<T, P.PageResumeFindFirstArgs>
+    ): Promise<
+      P.CheckSelect<T, Api.Result<PageResume>, PrismaPromise<Api.Result<P.PageResumeGetPayload<T>>>>
     >;
 
     /**
@@ -97,6 +104,7 @@ declare global {
     }
 
     type _PageIndex = PageIndex;
+    type _PageResume = PageResume;
     type _Tech = Tech;
   }
 }

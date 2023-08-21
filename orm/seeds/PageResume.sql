@@ -1,0 +1,2 @@
+INSERT INTO public."PageResume" VALUES (1, 'Резюме', 'Веб разработчик', 'сергей,кольмиллер,резюме', 'ru', 'Версия для печати');
+INSERT INTO public."PageResume" VALUES (2, 'Resume', 'Full Stack Web Developer', 'sergey,kolmiller,resume', 'en', 'Print Version');

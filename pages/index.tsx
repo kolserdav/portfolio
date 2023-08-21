@@ -9,7 +9,6 @@
  * Create Date: Mon Jun 05 2023 12:08:24 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
 import type { NextPage, GetServerSidePropsContext } from 'next';
-import Head from 'next/head';
 import clsx from 'clsx';
 import '@kolserdav/swiper/dist/styles.css';
 import s from '../styles/Page.module.scss';
@@ -19,6 +18,7 @@ import Footer from '../components/Footer/Footer';
 import Cloud from '../components/Cloud/Cloud';
 import About from '../components/About/About';
 import { request } from '../api/utils';
+import Head from '../components/Head';
 
 interface HomeProps {
   page: Api.Result<
@@ -37,12 +37,11 @@ const Home: NextPage<HomeProps> = ({ page }: HomeProps) => {
 
   return (
     <div className={s.wrapper__global}>
-      <Head>
-        <title>{_data.metaTitle}</title>
-        <meta name="description" content={_data.metaDescription} />
-        <meta name="keywords" content={_data.metaKeywords} />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Head
+        title={_data.metaTitle}
+        description={_data.metaDescription}
+        keywords={_data.metaDescription}
+      />
       <Header
         headerTitle={_data.headerTitle}
         headerSubtitle={_data.headerSubtitle}
