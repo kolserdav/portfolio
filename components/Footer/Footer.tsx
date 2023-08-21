@@ -8,6 +8,7 @@
  * Copyright: kolserdav, All rights reserved (c)
  * Create Date: Mon Jun 05 2023 12:08:24 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
+import { useRouter } from 'next/router';
 import s from './Footer.module.scss';
 import { CONTACTS } from '../../utils';
 
@@ -20,6 +21,7 @@ if (currentYear === startYear) {
 }
 
 const Footer = () => {
+  const { locale } = useRouter();
   return (
     <footer className={s.wrapper}>
       <div className={s.container}>
@@ -35,7 +37,7 @@ const Footer = () => {
           </div>
           <div className={s.link}>
             Resume:{' '}
-            <a target="_blank" href="/resume">
+            <a target="_blank" rel="noreferrer" href={locale === 'ru' ? '/resume' : '/en/resume'}>
               here
             </a>
           </div>
