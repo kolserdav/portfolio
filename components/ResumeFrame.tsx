@@ -19,6 +19,7 @@ const ResumeFrame = ({ title, printVersion }: { title: string; printVersion: str
   return (
     <div className={s.wrapper}>
       <div className={s.link__container}>
+        <h1>{title}</h1>
         <Link className={s.link} href={RESUME_LINK}>
           {printVersion}
         </Link>
