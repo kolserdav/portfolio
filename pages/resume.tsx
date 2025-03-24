@@ -28,12 +28,12 @@ const Resume: NextPage<Props> = ({ page }: Props) => {
   return (
     <div className={s.wrapper__global}>
       <Head
-        title={_data.metaTitle}
-        description={_data.metaDescription}
-        keywords={_data.metaDescription}
+        title={_data?.metaTitle}
+        description={_data?.metaDescription}
+        keywords={_data?.metaDescription}
       />
       <main className={clsx(s.main, s.row)}>
-        <ResumeFrame title={_data.metaDescription} printVersion={_data.printVersion} />
+        <ResumeFrame title={_data?.metaDescription} printVersion={_data?.printVersion} />
       </main>
     </div>
   );
