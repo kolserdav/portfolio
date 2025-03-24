@@ -1,10 +1,23 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-
+import type { Lang } from '@prisma/client';
 import s from './ResumeFrame.module.scss';
-import { RESUME_LINK_RU } from '../utils';
+import {
+  RESUME_LINK_EN,
+  RESUME_LINK_PRINT_EN,
+  RESUME_LINK_PRINT_RU,
+  RESUME_LINK_RU,
+} from '../utils';
 
-const ResumeFrame = ({ title, printVersion }: { title: string; printVersion: string }) => {
+const ResumeFrame = ({
+  title,
+  printVersion,
+  lang,
+}: {
+  title: string;
+  printVersion: string;
+  lang: Lang;
+}) => {
   const frameRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -19,9 +32,14 @@ const ResumeFrame = ({ title, printVersion }: { title: string; printVersion: str
 
   return (
     <div className={s.wrapper}>
+      <div className={s.back}>
+        <Link className={s.link} href="/">
+          &larr;
+        </Link>
+      </div>
       <div className={s.link__container}>
         <h1>{title}</h1>
-        <Link className={s.link} href={RESUME_LINK_RU}>
+        <Link className={s.link} href={lang === 'ru' ? RESUME_LINK_PRINT_RU : RESUME_LINK_PRINT_EN}>
           {printVersion}
         </Link>
       </div>
@@ -29,7 +47,7 @@ const ResumeFrame = ({ title, printVersion }: { title: string; printVersion: str
         className={s.frame}
         ref={frameRef}
         title={title}
-        src={`${RESUME_LINK_RU}?embedded=true`}
+        src={lang === 'ru' ? RESUME_LINK_RU : RESUME_LINK_EN}
       />
     </div>
   );

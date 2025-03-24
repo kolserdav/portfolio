@@ -33,7 +33,11 @@ const Resume: NextPage<Props> = ({ page }: Props) => {
         keywords={_data?.metaDescription}
       />
       <main className={clsx(s.main, s.row)}>
-        <ResumeFrame title={_data?.metaDescription} printVersion={_data?.printVersion} />
+        <ResumeFrame
+          title={_data?.metaDescription}
+          printVersion={_data?.printVersion}
+          lang={_data?.lang}
+        />
       </main>
     </div>
   );
