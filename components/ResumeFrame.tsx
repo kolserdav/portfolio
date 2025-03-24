@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { RESUME_LINK, RESUME_URL } from '../utils';
+
 import s from './ResumeFrame.module.scss';
+import { RESUME_LINK_RU } from '../utils';
 
 const ResumeFrame = ({ title, printVersion }: { title: string; printVersion: string }) => {
   const frameRef = useRef<HTMLIFrameElement>(null);
@@ -20,11 +21,16 @@ const ResumeFrame = ({ title, printVersion }: { title: string; printVersion: str
     <div className={s.wrapper}>
       <div className={s.link__container}>
         <h1>{title}</h1>
-        <Link className={s.link} href={RESUME_LINK}>
+        <Link className={s.link} href={RESUME_LINK_RU}>
           {printVersion}
         </Link>
       </div>
-      <iframe ref={frameRef} title={title} src={RESUME_URL} />
+      <iframe
+        className={s.frame}
+        ref={frameRef}
+        title={title}
+        src={`${RESUME_LINK_RU}?embedded=true`}
+      />
     </div>
   );
 };

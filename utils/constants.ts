@@ -38,5 +38,5 @@ export const CONTACTS = {
  */
 export const HETZNER_REFERAL_LINK = 'https://my.adminvps.ru/aff.php?aff=27795';
 
-export const RESUME_URL = process.env.NEXT_PUBLIC_RESUME_URL || '';
-export const RESUME_LINK = process.env.NEXT_PUBLIC_RESUME_LINK || '';
+export const RESUME_LINK_RU =
+  'https://docs.google.com/document/d/e/2PACX-1vTkP5CUuGm0i5Tpeea3brWuWV4WFhfyXMMK4ZnDaZ1IezothoPRay9m014chmP2i-o-lNz808R9fdlZ/pub';
