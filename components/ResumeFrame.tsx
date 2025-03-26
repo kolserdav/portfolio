@@ -39,7 +39,11 @@ const ResumeFrame = ({
       </div>
       <div className={s.link__container}>
         <h1>{title}</h1>
-        <Link className={s.link} href={lang === 'ru' ? RESUME_LINK_PRINT_RU : RESUME_LINK_PRINT_EN}>
+        <Link
+          target="_blank"
+          className={s.link}
+          href={lang === 'ru' ? RESUME_LINK_PRINT_RU : RESUME_LINK_PRINT_EN}
+        >
           {printVersion}
         </Link>
       </div>

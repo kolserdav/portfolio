@@ -11,6 +11,7 @@
 import { useRouter } from 'next/router';
 import s from './Footer.module.scss';
 import { CONTACTS } from '../../utils';
+import Link from 'next/link';
 
 const { email, telegram, github } = CONTACTS;
 
@@ -37,9 +38,9 @@ const Footer = () => {
           </div>
           <div className={s.link}>
             Resume:{' '}
-            <a target="_blank" rel="noreferrer" href={locale === 'ru' ? '/resume' : '/en/resume'}>
+            <Link rel="noreferrer" href={locale === 'ru' ? '/resume' : '/en/resume'}>
               here
-            </a>
+            </Link>
           </div>
         </div>
         <div className={s.copyright}>
