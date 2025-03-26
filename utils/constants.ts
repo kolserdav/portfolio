@@ -28,15 +28,12 @@ export const IMG_SIZES: Record<
  *  My contancts
  */
 export const CONTACTS = {
-  email: 'kolserdav@uyem.ru',
+  email: 'kolserdav@conhos.ru',
   telegram: 'kolserdav',
   github: 'https://github.com/kolserdav',
 };
 
-/**
- * My referal link of Hetzner
- */
-export const HETZNER_REFERAL_LINK = 'https://my.adminvps.ru/aff.php?aff=27795';
+export const CONHOS_REFERAL_LINK = 'https://conhos.ru';
 
 export const RESUME_LINK_PRINT_EN =
   'https://docs.google.com/document/d/1fjbCWW34GYcBag7buwxxqnsrjEU_3543SXqaCEFujkU/edit?usp=sharing';

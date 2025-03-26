@@ -10,8 +10,8 @@
  ******************************************************************************************/
 import Image from 'next/image';
 import s from './Cloud.module.scss';
-import { HETZNER_REFERAL_LINK } from '../../utils';
-import HetznerLogo from '../../images/adminvps-logo/small.gif';
+import { CONHOS_REFERAL_LINK } from '../../utils';
+import ConhosLogo from '../../images/conhos/banner.png';
 
 interface CloudProps {
   cloudTitle: string;
@@ -27,8 +27,8 @@ const Cloud = (props: CloudProps) => {
           <h2 className={s.title}>{cloudTitle}</h2>
           <p className={s.content} dangerouslySetInnerHTML={{ __html: cloudContent }} />
         </div>
-        <a className={s.image} href={HETZNER_REFERAL_LINK}>
-          <Image src={HetznerLogo} width={320} alt="hetzner" />
+        <a target="__blank" className={s.image} href={CONHOS_REFERAL_LINK}>
+          <Image src={ConhosLogo} width={320} alt="conhos banner" />
         </a>
       </div>
     </section>

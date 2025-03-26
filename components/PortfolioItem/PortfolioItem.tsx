@@ -148,7 +148,7 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
       </div>
       <div className={s.container}>
         {link ? (
-          <a href={link} className={s.link}>
+          <a href={link} target="_blank" className={s.link}>
             <h1 className={s.title}>{name}</h1>
           </a>
         ) : (

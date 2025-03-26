@@ -189,8 +189,9 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
             dots={{
               list: dots,
               active,
+              inactive: false,
             }}
-            invitationAnimation={true}
+            invitationAnimation
           />
         )}
       </div>
