@@ -28,7 +28,7 @@ interface RequestParams {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function send(props: RequestParams): Promise<any> {
   const { method, url, body, params, headers, responseType } = props;
-  const _headers = { ...headers } || {};
+  const _headers = structuredClone(headers) || {};
   if (!_headers['content-type'] && !_headers['Content-Type']) {
     _headers['Content-Type'] = 'application/json';
   }

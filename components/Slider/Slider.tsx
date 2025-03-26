@@ -10,7 +10,7 @@
  ******************************************************************************************/
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Swiper, GetSwipeHandler, Swipe } from '@kolserdav/swiper';
+import Swiper, { GetSwipeHandler, Swipe } from '@kolserdav/swiper';
 import '@kolserdav/swiper/dist/styles.css';
 import s from './Slider.module.scss';
 import PortfolioItem from '../PortfolioItem/PortfolioItem';
@@ -166,7 +166,7 @@ const Slider = ({ sliderTitle, sliderDescription }: SliderProps) => {
         },
       });
       const { data } = jobs;
-      setDots(data.map((item) => item.priority));
+      setDots(data.map((item: any) => item.priority));
     };
     getDots();
   }, [router.locale, router.asPath, lang]);

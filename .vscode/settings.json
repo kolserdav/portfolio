@@ -1,6 +1,5 @@
 {
   "eslint.validate": ["javascript", "javascriptreact", "html", "typescriptreact"],
-  "eslint.options": { "overrideConfigFile": ".eslintrc" },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "files.associations": {
