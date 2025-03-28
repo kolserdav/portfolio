@@ -47,12 +47,7 @@ const ResumeFrame = ({
           {printVersion}
         </Link>
       </div>
-      <iframe
-        className={s.frame}
-        ref={frameRef}
-        title={title}
-        src={lang === 'ru' ? RESUME_LINK_RU : RESUME_LINK_EN}
-      />
+      <iframe ref={frameRef} title={title} src={lang === 'ru' ? RESUME_LINK_RU : RESUME_LINK_EN} />
     </div>
   );
 };
