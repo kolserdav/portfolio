@@ -28,13 +28,22 @@ const Footer = () => {
       <div className={s.container}>
         <div className={s.links}>
           <div className={s.link}>
-            Email: <a href={`mailto:${email}`}>{email}</a>
+            Email:{' '}
+            <a target="_blank" href={`mailto:${email}`}>
+              {email}
+            </a>
           </div>
           <div className={s.link}>
-            Telegram: <a href={`https://t.me/${telegram}`}>@{telegram}</a>
+            Telegram:{' '}
+            <a target="_blank" href={`https://t.me/${telegram}`}>
+              @{telegram}
+            </a>
           </div>
           <div className={s.link}>
-            Github: <a href={github}>{github}</a>
+            Github:{' '}
+            <a target="_blank" href={github}>
+              {github}
+            </a>
           </div>
           <div className={s.link}>
             Resume:{' '}
