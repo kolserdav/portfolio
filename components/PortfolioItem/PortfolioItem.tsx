@@ -144,6 +144,7 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
           height={Math.ceil(500 / data.Image.coeff)}
           alt={`Job ${data.id}`}
           priority
+          loading="eager"
         />
         <div className={s.zoom__icon} />
       </div>
