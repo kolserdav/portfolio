@@ -28,7 +28,8 @@ interface HomeProps {
   >;
 }
 
-const Home: NextPage<HomeProps> = ({ page }: HomeProps) => {
+const Home: NextPage<HomeProps> = (props: HomeProps) => {
+  const { page } = props;
   const { data } = page;
 
   const _data = data || {

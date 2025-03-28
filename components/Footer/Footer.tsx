@@ -28,7 +28,7 @@ const Footer = () => {
       <div className={s.container}>
         <div className={s.links}>
           <div className={s.link}>
-            Email:{' '}
+            {locale === 'ru' ? 'Почта:' : 'Email:'}{' '}
             <a target="_blank" href={`mailto:${email}`}>
               {email}
             </a>
@@ -46,14 +46,14 @@ const Footer = () => {
             </a>
           </div>
           <div className={s.link}>
-            Resume:{' '}
             <Link rel="noreferrer" href={locale === 'ru' ? '/resume' : '/en/resume'}>
-              here
+              {locale === 'ru' ? 'Мое актуальное резюме' : 'My current resume'}
             </Link>
           </div>
         </div>
         <div className={s.copyright}>
-          © All rights reserved 2022{currentYear !== 0 && ` - ${currentYear}`}
+          © {locale === 'ru' ? 'Все права защищены' : 'All rights reserved'} 2022
+          {currentYear !== 0 && ` - ${currentYear}`}
         </div>
       </div>
     </footer>

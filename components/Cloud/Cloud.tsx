@@ -12,14 +12,15 @@ import Image from 'next/image';
 import s from './Cloud.module.scss';
 import { CONHOS_REFERAL_LINK } from '../../utils';
 import ConhosLogo from '../../images/conhos/banner.png';
+import ConhosLogoEn from '../../images/conhos/banner-en.png';
+import { useRouter } from 'next/router';
 
-interface CloudProps {
-  cloudTitle: string;
-  cloudContent: string;
-}
-
-const Cloud = (props: CloudProps) => {
+const Cloud = (props: { cloudTitle: string; cloudContent: string }) => {
   const { cloudTitle, cloudContent } = props;
+
+  const router = useRouter();
+  const { locale } = router;
+
   return (
     <section className={s.wrapper}>
       <div className={s.container}>
@@ -27,8 +28,16 @@ const Cloud = (props: CloudProps) => {
           <h2 className={s.title}>{cloudTitle}</h2>
           <p className={s.content} dangerouslySetInnerHTML={{ __html: cloudContent }} />
         </div>
-        <a target="__blank" className={s.image} href={CONHOS_REFERAL_LINK}>
-          <Image src={ConhosLogo} width={320} alt="conhos banner" />
+        <a
+          target="__blank"
+          className={s.image}
+          href={locale === 'ru' ? CONHOS_REFERAL_LINK : `${CONHOS_REFERAL_LINK}/en-US`}
+        >
+          <Image
+            src={locale === 'ru' ? ConhosLogo : ConhosLogoEn}
+            width={320}
+            alt="conhos banner"
+          />
         </a>
       </div>
     </section>
