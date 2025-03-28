@@ -8,7 +8,7 @@
  * Copyright: kolserdav, All rights reserved (c)
  * Create Date: Mon Jun 05 2023 12:08:24 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import NextImage from 'next/image';
 import s from './PortfolioItem.module.scss';
@@ -71,11 +71,7 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
   const [fullImage, setFullImage] = useState<FullImage | null>(null);
   const [zoomMax, setZoomMax] = useState<boolean>(false);
 
-  /**
-   * Click image handler
-   */
-  const clickToImage = () => {
-    setFullOpen(!fullOpen);
+  const setImageWidh = useCallback(() => {
     const devWidth = getDeviceWidth();
     const width = devWidth - 20;
     const height = Math.ceil(width / Image.coeff);
@@ -93,24 +89,23 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
       height,
       src: image,
     });
+  }, [Image]);
+
+  const clickToImage = useCallback(() => {
+    setFullOpen(!fullOpen);
+    setImageWidh();
     document.body.classList.add('noscroll');
     store.dispatch({ type: 'SWIPER_BLOCKED', value: true });
-  };
+  }, [setImageWidh, fullOpen]);
 
-  /**
-   * Close full image
-   */
-  const closeFullImage = () => {
+  const closeFullImage = useCallback(() => {
     setFullOpen(false);
     setFullImage(null);
     document.body.classList.remove('noscroll');
     store.dispatch({ type: 'SWIPER_BLOCKED', value: false });
-  };
+  }, []);
 
-  /**
-   * Click zoom in handler
-   */
-  const zoomIn = () => {
+  const zoomIn = useCallback(() => {
     setZoomMax(true);
     const { width, coeff } = Image;
     const height = Math.ceil(width / coeff);
@@ -119,19 +114,33 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
       height,
       src: Image.full,
     });
-  };
+  }, [Image]);
 
-  /**
-   * Click zoom out handler
-   */
-  const zoomOut = () => {
+  const zoomOut = useCallback(() => {
     setZoomMax(false);
     setFullImage({
       width: fullStart?.width || 0,
       height: fullStart?.height || 0,
       src: fullStart?.src || '',
     });
-  };
+  }, [fullStart]);
+
+  /**
+   * Listen display resize
+   */
+  useEffect(() => {
+    const handler = () => {
+      if (fullOpen) {
+        setImageWidh();
+        setZoomMax(false);
+      }
+    };
+
+    window.addEventListener('resize', handler);
+    return () => {
+      window.removeEventListener('resize', handler);
+    };
+  }, [setImageWidh, fullOpen]);
 
   return (
     <div className={s.wrapper}>
