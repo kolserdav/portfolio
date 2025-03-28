@@ -145,6 +145,7 @@ const PortfolioItem: NextPage<PortfolioItemProps> = (props) => {
           alt={`Job ${data.id}`}
           priority
           loading="eager"
+          layout="fixed"
         />
         <div className={s.zoom__icon} />
       </div>
