@@ -16,10 +16,7 @@ import Link from 'next/link';
 const { email, telegram, github } = CONTACTS;
 
 const startYear = 2022;
-let currentYear = new Date().getFullYear();
-if (currentYear === startYear) {
-  currentYear = 0;
-}
+const currentYear = new Date().getFullYear() !== startYear ? new Date().getFullYear() : 0;
 
 const Footer = () => {
   const { locale } = useRouter();
@@ -29,30 +26,45 @@ const Footer = () => {
         <div className={s.links}>
           <div className={s.link}>
             {locale === 'ru' ? 'Почта:' : 'Email:'}{' '}
-            <a target="_blank" href={`mailto:${email}`}>
+            <a
+              target="_blank"
+              href={`mailto:${email}`}
+              aria-label={`Email ${email}`}
+              rel="noopener noreferrer"
+            >
               {email}
             </a>
           </div>
           <div className={s.link}>
             Telegram:{' '}
-            <a target="_blank" href={`https://t.me/${telegram}`}>
+            <a
+              target="_blank"
+              href={`https://t.me/${telegram}`}
+              aria-label={`Telegram ${telegram}`}
+              rel="noopener noreferrer"
+            >
               @{telegram}
             </a>
           </div>
           <div className={s.link}>
             Github:{' '}
-            <a target="_blank" href={github}>
+            <a
+              target="_blank"
+              href={github}
+              aria-label={`GitHub ${github}`}
+              rel="noopener noreferrer"
+            >
               {github}
             </a>
           </div>
           <div className={s.link}>
-            <Link rel="noreferrer" href={locale === 'ru' ? '/resume' : '/en/resume'}>
+            <Link rel="noopener noreferrer" href={locale === 'ru' ? '/resume' : '/en/resume'}>
               {locale === 'ru' ? 'Мое актуальное резюме' : 'My current resume'}
             </Link>
           </div>
         </div>
         <div className={s.copyright}>
-          © {locale === 'ru' ? 'Все права защищены' : 'All rights reserved'} 2022
+          © {locale === 'ru' ? 'Все права защищены' : 'All rights reserved'} {startYear}
           {currentYear !== 0 && ` - ${currentYear}`}
         </div>
       </div>
