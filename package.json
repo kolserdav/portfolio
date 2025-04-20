@@ -22,7 +22,7 @@
     "logs": "journalctl -u portfolio -e"
   },
   "dependencies": {
-    "@kolserdav/swiper": "^4.3.10",
+    "@kolserdav/swiper": "^4.3.11",
     "@prisma/client": "^6.5.0",
     "axios": "^1.8.4",
     "clsx": "^1.1.1",
