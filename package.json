@@ -23,12 +23,12 @@
     "logs": "journalctl -u portfolio -e"
   },
   "dependencies": {
-    "@kolserdav/swiper": "^4.3.11",
+    "@kolserdav/swiper": "^4.4.0",
     "@prisma/client": "^6.5.0",
     "axios": "^1.8.4",
     "clsx": "^1.1.1",
     "express": "^4.21.2",
-    "next": "15.2.4",
+    "next": "15.5.7",
     "react": "^19",
     "react-dom": "^19",
     "redux": "^5.0.1",
