@@ -1,5 +1,5 @@
 datasource db {
-  provider = "postgres"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -15,7 +15,7 @@ enum Lang {
 // Jobs
 model Job {
   id          String   @id @default(uuid())
-  priority    Int      @default(autoincrement())
+  priority    Int      @default(0)
   name        String   @db.VarChar(50)
   link        String?  @db.VarChar(60)
   description String   @db.VarChar(500)

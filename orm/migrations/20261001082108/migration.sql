@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Job` MODIFY `priority` INTEGER NOT NULL DEFAULT 0;
