@@ -1,3 +1,7 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 INSERT INTO `Image` (`id`, `full`, `desktop`, `tablet`, `mobile`, `small`, `coeff`, `width`, `created`) VALUES
 (2, 'https://storage.yandexcloud.net/jobs/ana/full.png', 'https://storage.yandexcloud.net/jobs/ana/desktop.png', 'https://storage.yandexcloud.net/jobs/ana/tablet.png', 'https://storage.yandexcloud.net/jobs/ana/mobile.png', 'https://storage.yandexcloud.net/jobs/ana/small.png', 1.7777777777777777, 1920, '2025-03-26 07:22:24.342'),
 (3, 'https://storage.yandexcloud.net/jobs/uyem1.gif', 'https://storage.yandexcloud.net/jobs/uyem1.gif', 'https://storage.yandexcloud.net/jobs/uyem1.gif', 'https://storage.yandexcloud.net/jobs/uyem1.gif', 'https://storage.yandexcloud.net/jobs/uyem1.gif', 1.7777777777777777, 640, '2025-03-26 07:40:02.690'),
@@ -19,8 +23,8 @@ INSERT INTO `PageIndex` (`id`, `metaTitle`, `metaDescription`, `metaKeywords`, `
 (2, 'Programmer portfolio', 'Demonstration of the work experience of software developer Kolmiller Sergei', 'node, freelancer', 'Programmer portfolio', 'Demonstration of the works of software developer Kolmiller Sergei', 'The complex consists of the simple, and the great of the small', 'About me', 'Biography in IT (short)', 'Kolmiller Sergei', 'In IT since 2010, created websites on CMS, combining it with his main job.\r\nStarted programming in 2017, after completing courses on the basics of programming. Since then, I have not done anything except development.', 'Skills in technology', 'This is far from a complete list of my skills. Here are listed only those that I work with most often.', 'Jobs', 'This is not a complete list of projects I took part in. Only the most interesting ones are shown, and those in the development of which I played a key role.', 'Cloud service', 'To host applications on the network, I used many different services. But now I have created my own service, where I host all my projects, including this site. Container Hosting is a convenient and inexpensive hosting based on Docker containers.', 'en', '2025-03-24 03:57:49.239');
 
 INSERT INTO `PageResume` (`id`, `metaTitle`, `metaDescription`, `metaKeywords`, `printVersion`, `lang`) VALUES
-(1, 'Резюме Сергей Кольмиллер', 'Мое актуальное резюме', 'резюме', 'ru', ''),
-(2, 'Resume Sergei Kolmiller', 'My current resume', 'resume', 'en', '');
+(1, 'Резюме Сергей Кольмиллер', 'Мое актуальное резюме', 'резюме', 'Версия для печати', 'ru'),
+(2, 'Resume Sergei Kolmiller', 'My current resume', 'resume', 'Print version', 'en');
 
 INSERT INTO `Tech` (`id`, `title`, `description`, `pageId`, `lang`, `created`) VALUES
 (1, 'Бекенд', 'Node JS, Express, Fastify, WS, Prisma JS, Docker, Kubernetes', 1, 'ru', '2025-03-24 04:07:53.314'),
@@ -37,4 +41,4 @@ INSERT INTO `Tech` (`id`, `title`, `description`, `pageId`, `lang`, `created`) V
 INSERT INTO `_prisma_migrations` (`id`, `checksum`, `finished_at`, `migration_name`, `logs`, `rolled_back_at`, `started_at`, `applied_steps_count`) VALUES
 ('5d1553a4-0d01-421b-8840-8096a0fc0053', '60a0c66111a92e8c31ff659392cfa8c5fbc65df8533a838229882b41fa541beb', '2026-10-01 08:17:47.719', '20261001081747', NULL, NULL, '2026-10-01 08:17:47.577', 1),
 ('ca7a5db9-2967-4110-a2ff-1bdd067b20fe', 'fc5df71c8b7fb9f3f761a693158dc7c2efaebc35ee887276b21b3be19bcbd1ab', '2026-10-01 08:21:08.889', '20261001082108', NULL, NULL, '2026-10-01 08:21:08.860', 1);
-
+COMMIT;
