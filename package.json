@@ -4,12 +4,9 @@
   "private": true,
   "repository": "git@github.com:kolserdav/portfolio.git",
   "homepage": "https://portfolio.uyem.ru",
-  "prisma": {
-    "schema": "orm/schema.prisma"
-  },
   "scripts": {
     "dev": "next dev",
-    "build": "npm run migrate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "migrate:dev": "npm run format && npm run generate && prisma migrate dev --preview-feature",
@@ -23,29 +20,29 @@
     "logs": "journalctl -u portfolio -e"
   },
   "dependencies": {
-    "@kolserdav/swiper": "^4.4.0",
-    "@prisma/client": "^6.5.0",
-    "axios": "^1.12.0",
-    "clsx": "^1.1.1",
-    "express": "^4.21.2",
-    "next": "16.1.5",
+    "@kolserdav/swiper": "^4.4.5",
+    "@prisma/client": "^7.10.1",
+    "axios": "^1.21.1",
+    "clsx": "^2.1.1",
+    "express": "^5.3.0",
+    "next": "16.4.6",
     "react": "^19",
     "react-dom": "^19",
     "redux": "^5.0.1",
-    "sharp": "^0.33.5"
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
-    "@types/express": "^5.0.1",
-    "@types/node": "^22",
+    "@types/express": "^5.0.6",
+    "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.2.4",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "prisma": "^6.5.0",
-    "sass": "^1.43.5",
+    "eslint-config-next": "^15",
+    "eslint-config-prettier": "^9",
+    "eslint-plugin-prettier": "^5",
+    "eslint-plugin-react-hooks": "^5",
+    "prisma": "^7.10.1",
+    "sass": "^1.108.2",
     "typescript": "^5"
   },
   "imgresize": {
@@ -72,5 +69,11 @@
     "licenseText": "Only the owner of the specified repository has the right to copy and distribute this file or its parts",
     "copyright": "kolserdav, All rights reserved (c)",
     "renewAll": false
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true,
+    "@prisma/engines@7.10.1": true,
+    "prisma@7.10.1": true,
+    "unrs-resolver@1.12.2": true
   }
 }

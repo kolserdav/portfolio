@@ -1,4 +1,4 @@
-FROM node:lts-alpine3.23 AS builder
+FROM node:24.22-alpine3.24 AS builder
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ COPY . .
 RUN npm i
 RUN  npm run build
 
-FROM node:lts-alpine3.23 AS runtime
+FROM node:24.22-alpine3.24 AS runtime
 
 WORKDIR /app
 

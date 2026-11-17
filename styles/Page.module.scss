@@ -1,4 +1,4 @@
-@import 'Global.module.scss';
+@use 'Global.module.scss' as *;
 
 .wrapper__global {
   position: relative;

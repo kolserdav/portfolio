@@ -1,4 +1,4 @@
-@import '../../styles/Global.module.scss';
+@use '../../styles/Global.module.scss' as *;
 
 .main {
   position: relative;
