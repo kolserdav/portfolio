@@ -2,7 +2,7 @@ PREFIX = kolserdav
 NAMESPACE = work
 NAME = portfolio
 FULL_NAME = $(PREFIX)/$(NAME)
-TAG = 0.0.15
+TAG = 0.0.19
 
 restart:
 	kubectl rollout restart -n $(NAMESPACE) deployment/$(NAME)
