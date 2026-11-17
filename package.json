@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "0.0.12",
+  "version": "0.0.15",
   "private": true,
   "repository": "git@github.com:kolserdav/portfolio.git",
   "homepage": "https://portfolio.uyem.ru",
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@kolserdav/swiper": "^4.4.5",
+    "@prisma/adapter-mariadb": "^7.10.1",
     "@prisma/client": "^7.10.1",
     "axios": "^1.21.1",
     "clsx": "^2.1.1",
@@ -69,11 +70,5 @@
     "licenseText": "Only the owner of the specified repository has the right to copy and distribute this file or its parts",
     "copyright": "kolserdav, All rights reserved (c)",
     "renewAll": false
-  },
-  "allowScripts": {
-    "@parcel/watcher@2.6.0": true,
-    "@prisma/engines@7.10.1": true,
-    "prisma@7.10.1": true,
-    "unrs-resolver@1.12.2": true
   }
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import type { Lang } from '@prisma/client';
+import type { Lang } from '../generated/prisma';
 import s from './ResumeFrame.module.scss';
 import {
   RESUME_LINK_EN,

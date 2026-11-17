@@ -8,10 +8,9 @@
  * Copyright: kolserdav, All rights reserved (c)
  * Create Date: Mon Jun 05 2023 12:08:24 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
-import { PrismaClient, Prisma, Job } from '@prisma/client';
+import { Prisma, Job } from '../../../generated/prisma';
+import prisma from '../../../utils/prisma';
 import { saveLog } from '../../utils';
-
-const prisma = new PrismaClient();
 
 const handler: Backend.RequestHandler<void, Prisma.JobFindManyArgs, Job[]> = async (req, res) => {
   const { body } = req;

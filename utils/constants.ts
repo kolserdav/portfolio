@@ -8,7 +8,7 @@
  * Copyright: kolserdav, All rights reserved (c)
  * Create Date: Mon Jun 05 2023 12:08:24 GMT+0700 (Krasnoyarsk Standard Time)
  ******************************************************************************************/
-import { Image } from '@prisma/client';
+import { Image } from '../generated/prisma';
 
 /**
  * Image sizes map
